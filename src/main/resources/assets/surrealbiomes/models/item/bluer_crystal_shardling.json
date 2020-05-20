@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "surrealbiomes:block/bluer_crystal_shardling"
+  }
+}

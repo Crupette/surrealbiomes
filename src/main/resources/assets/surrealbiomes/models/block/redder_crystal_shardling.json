@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "surrealbiomes:block/redder_crystal_shardling"
+  }
+}

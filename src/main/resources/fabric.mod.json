@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "surrealbiomes",
+  "version": "${version}",
+  "name": "Surreal Biomes",
+  "description": "Adds several new and unique biomes to explore.",
+  "authors": [
+    "Crupette"
+  ],
+  "contributors": [],
+  "contact": {
+    "homepage": "https://github.com/Crupette/surreal-biomes/wiki",
+    "sources": "https://github.com/Crupette/surreal-biomes"
+  },
+  "license": "MIT",
+  "icon": "assets/surrealbiomes/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.crupette.surrealbiomes.SBBase"
+    ],
+    "client": [],
+    "server": []
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  }
+}
