@@ -74,10 +74,6 @@ public class SBConfig {
         @Constrain.Range(min = 0.D, max = 1.D, step = 0.01D)
         public double crystaline_forest_chance = 0.03D;
 
-        @Setting(comment = "Rainbow desert rarity (0 disables, 1 is very common) default 0.03")
-        @Constrain.Range(min = 0.D, max = 1.D, step = 0.01D)
-        public double rainbow_desert_chance = 0.03D;
-
         @Setting(comment = "If Crystal grass is spreadable (disable to stop crystal grass ticking. default: true)")
         public boolean crystaline_grass_spread = true;
 

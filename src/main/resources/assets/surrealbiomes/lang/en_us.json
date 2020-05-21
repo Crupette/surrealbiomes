@@ -1,9 +1,18 @@
 {
     "biome.surrealbiomes.crystaline_plains": "Crystaline Plains",
     "biome.surrealbiomes.crystaline_forest": "Crystaline Forest",
+    "biome.surrealbiomes.rainbow_desert": "Rainbow Desert",
 
     "block.surrealbiomes.crystal_grass": "Crystal Grass",
     "block.surrealbiomes.redder_crystal_shardling": "Redder Crystal Shardling",
     "block.surrealbiomes.greener_crystal_shardling": "Greener Crystal Shardling",
-    "block.surrealbiomes.bluer_crystal_shardling": "Bluer Crystal Shardling"
+    "block.surrealbiomes.bluer_crystal_shardling": "Bluer Crystal Shardling",
+
+    "block.surrealbiomes.red_sand": "Red Sand",
+    "block.surrealbiomes.orange_sand": "Orange Sand",
+    "block.surrealbiomes.yellow_sand": "Yellow Sand",
+    "block.surrealbiomes.green_sand": "Green Sand",
+    "block.surrealbiomes.blue_sand": "Blue Sand",
+    "block.surrealbiomes.purple_sand": "Purple Sand",
+    "block.surrealbiomes.white_sand": "White Sand"
 }
