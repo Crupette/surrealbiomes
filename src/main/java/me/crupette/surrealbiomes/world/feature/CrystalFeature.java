@@ -10,9 +10,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
+import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import org.apache.logging.log4j.Level;
@@ -33,7 +33,7 @@ public class CrystalFeature extends Feature<DefaultFeatureConfig> {
         for(String configstr : SBConfig.config.crystal_growth_blocks){
             Identifier id = new Identifier(configstr.substring(0, configstr.indexOf(':')), configstr.substring(configstr.indexOf(':') + 1));
             Block retrieved = Registry.BLOCK.get(id);
-            if(retrieved.is(Blocks.AIR)){
+            if(retrieved == Blocks.AIR){
                 SBBase.log(Level.ERROR, "For crystalGrowthBlocks, passed invalid block id: \"" + configstr + "\". Using minecraft:glass");
                 retrieved = Blocks.GLASS;
             }
@@ -55,7 +55,7 @@ public class CrystalFeature extends Feature<DefaultFeatureConfig> {
         }
     }
 
-    private void generateCrystal(ServerWorldAccess serverWorldAccess, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos center, DefaultFeatureConfig config){
+    private void generateCrystal(IWorld world, Random random, BlockPos center){
         int height = random.nextInt(SBConfig.config.crystal_height_max - SBConfig.config.crystal_height_min) + SBConfig.config.crystal_height_min;
         int radius = random.nextInt(SBConfig.config.crystal_radius_max - SBConfig.config.crystal_radius_min) + SBConfig.config.crystal_radius_min;
         float slant = random.nextFloat() * SBConfig.config.crystal_tilt;
@@ -65,8 +65,8 @@ public class CrystalFeature extends Feature<DefaultFeatureConfig> {
                                     center.getY(),
                                     center.getZ() + (random.nextInt(spread * 2) - spread));
 
-        while (serverWorldAccess.isAir(pos) && pos.getY() > 2) pos = pos.down();
-        if(!serverWorldAccess.getBlockState(pos).isOf(SurrealBlocks.CRYSTAL_GRASS)) return;
+        while (world.isAir(pos) && pos.getY() > 2) pos = pos.down();
+        if(world.getBlockState(pos).getBlock() != SurrealBlocks.CRYSTAL_GRASS) return;
         pos = pos.up();
 
         double addx = 0, addz = 0;
@@ -80,9 +80,9 @@ public class CrystalFeature extends Feature<DefaultFeatureConfig> {
                     int distcheck = Math.abs(x) + Math.abs(z);
                     if(distcheck > radius) continue;
                     if(distcheck == radius || y == height){
-                        if(serverWorldAccess.isAir(pos.add(x, 0, z))) serverWorldAccess.setBlockState(pos.add(x, 0, z), outside, 2);
+                        if(world.isAir(pos.add(x, 0, z))) world.setBlockState(pos.add(x, 0, z), outside, 2);
                     }else {
-                        serverWorldAccess.setBlockState(pos.add(x, 0, z), inside, 2);
+                        world.setBlockState(pos.add(x, 0, z), inside, 2);
                     }
                 }
             }
@@ -96,12 +96,13 @@ public class CrystalFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ServerWorldAccess serverWorldAccess, StructureAccessor accessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
+    public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
         int count = random.nextInt(4) + 3;
         while (count > 0){
-            generateCrystal(serverWorldAccess, accessor, generator, random, pos, config);
+            generateCrystal(world, random, pos);
             count--;
         }
         return true;
     }
+
 }
