@@ -8,5 +8,5 @@ import net.minecraft.world.gen.feature.Feature;
 public class SurrealFeatures {
 
     public static final Feature<DefaultFeatureConfig> CRYSTAL = Registry.register(
-            Registry.FEATURE, new Identifier("surrealbiomes", "crystal"), new CrystalFeature(DefaultFeatureConfig::deserialize));
+            Registry.FEATURE, new Identifier("surrealbiomes", "crystal"), new CrystalFeature(DefaultFeatureConfig.field_24893));
 }

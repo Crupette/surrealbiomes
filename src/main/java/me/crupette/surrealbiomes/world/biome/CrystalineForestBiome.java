@@ -28,13 +28,11 @@ public class CrystalineForestBiome extends Biome {
                                 .moodSound(BiomeMoodSound.CAVE).build()
                 ).parent(null));
 
-        this.addStructureFeature(Feature.MINESHAFT.configure(new MineshaftFeatureConfig(0.004D, MineshaftFeature.Type.NORMAL)));
-        this.addStructureFeature(Feature.STRONGHOLD.configure(FeatureConfig.DEFAULT));
-        this.addStructureFeature(Feature.RUINED_PORTAL.configure(new RuinedPortalFeatureConfig(RuinedPortalFeature.Type.STANDARD)));
+        DefaultBiomeFeatures.method_28440(this);
+        this.addStructureFeature(DefaultBiomeFeatures.field_24711);
         this.addFeature(GenerationStep.Feature.RAW_GENERATION, SurrealFeatures.CRYSTAL.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(2))));
 
         DefaultBiomeFeatures.addLandCarvers(this);
-        DefaultBiomeFeatures.addDefaultStructures(this);
         DefaultBiomeFeatures.addDefaultLakes(this);
         DefaultBiomeFeatures.addDungeons(this);
         DefaultBiomeFeatures.addMineables(this);

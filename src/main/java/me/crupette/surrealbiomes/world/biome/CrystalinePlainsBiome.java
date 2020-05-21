@@ -29,19 +29,19 @@ public class CrystalinePlainsBiome extends Biome {
                                 .moodSound(BiomeMoodSound.CAVE).build()
                 ).parent(null));
 
-        this.addStructureFeature(Feature.MINESHAFT.configure(new MineshaftFeatureConfig(0.004D, MineshaftFeature.Type.NORMAL)));
-        this.addStructureFeature(Feature.STRONGHOLD.configure(FeatureConfig.DEFAULT));
-        this.addStructureFeature(Feature.RUINED_PORTAL.configure(new RuinedPortalFeatureConfig(RuinedPortalFeature.Type.STANDARD)));
+        DefaultBiomeFeatures.method_28440(this);             //Default biome features
+        this.addStructureFeature(DefaultBiomeFeatures.field_24711); //Stronghold
         this.addFeature(GenerationStep.Feature.RAW_GENERATION, SurrealFeatures.CRYSTAL.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(0, 0.1F, 1))));
 
         DefaultBiomeFeatures.addLandCarvers(this);
-        DefaultBiomeFeatures.addDefaultStructures(this);
         DefaultBiomeFeatures.addDefaultLakes(this);
         DefaultBiomeFeatures.addDungeons(this);
         DefaultBiomeFeatures.addMineables(this);
         DefaultBiomeFeatures.addDefaultOres(this);
         DefaultBiomeFeatures.addDefaultDisks(this);
         DefaultBiomeFeatures.addSprings(this);
+        DefaultBiomeFeatures.addDefaultMushrooms(this);
+        DefaultBiomeFeatures.addDefaultVegetation(this);
 
         this.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(
                 new RandomPatchFeatureConfig.Builder(new WeightedBlockStateProvider()

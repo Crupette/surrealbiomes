@@ -1,6 +1,6 @@
 package me.crupette.surrealbiomes.world.feature;
 
-import com.mojang.datafixers.Dynamic;
+import com.mojang.serialization.Codec;
 import me.crupette.surrealbiomes.SBBase;
 import me.crupette.surrealbiomes.SBConfig;
 import me.crupette.surrealbiomes.block.SurrealBlocks;
@@ -26,8 +26,8 @@ public class CrystalFeature extends Feature<DefaultFeatureConfig> {
 
     private static final List<BlockState> COLORS = new ArrayList<>();
 
-    public CrystalFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
-        super(configDeserializer);
+    public CrystalFeature(Codec<DefaultFeatureConfig> codec) {
+        super(codec);
 
         if(COLORS.size() != 0) return;
         for(String configstr : SBConfig.config.crystal_growth_blocks){
