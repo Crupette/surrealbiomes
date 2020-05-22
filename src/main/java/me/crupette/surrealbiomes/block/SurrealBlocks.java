@@ -1,5 +1,7 @@
 package me.crupette.surrealbiomes.block;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import me.crupette.surrealbiomes.SBBase;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -52,8 +54,13 @@ public class SurrealBlocks {
         registerBlock(new Identifier(SBBase.MOD_ID, "purple_sand"), PURPLE_SAND, ItemGroup.BUILDING_BLOCKS);
         registerBlock(new Identifier(SBBase.MOD_ID, "white_sand"), WHITE_SAND, ItemGroup.BUILDING_BLOCKS);
 
+    }
+  
+    @Environment(EnvType.CLIENT)
+    public static void registerBlocksClient(){
         BlockRenderLayerMap.INSTANCE.putBlock(REDDER_CRYSTAL_SHARDLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GREENER_CRYSTAL_SHARDLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BLUER_CRYSTAL_SHARDLING, RenderLayer.getCutout());
     }
+
 }
