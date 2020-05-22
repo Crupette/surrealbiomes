@@ -1,5 +1,7 @@
 package me.crupette.surrealbiomes.block;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
@@ -33,9 +35,13 @@ public class SurrealBlocks {
         registerBlock(new Identifier("surrealbiomes", "redder_crystal_shardling"), REDDER_CRYSTAL_SHARDLING, ItemGroup.DECORATIONS);
         registerBlock(new Identifier("surrealbiomes", "bluer_crystal_shardling"), BLUER_CRYSTAL_SHARDLING, ItemGroup.DECORATIONS);
         registerBlock(new Identifier("surrealbiomes", "greener_crystal_shardling"), GREENER_CRYSTAL_SHARDLING, ItemGroup.DECORATIONS);
+    }
 
+    @Environment(EnvType.CLIENT)
+    public static void registerBlocksClient(){
         BlockRenderLayerMap.INSTANCE.putBlock(REDDER_CRYSTAL_SHARDLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GREENER_CRYSTAL_SHARDLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BLUER_CRYSTAL_SHARDLING, RenderLayer.getCutout());
     }
+
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "surrealbiomes",
-  "version": "${version}",
+  "version": "0.1.2",
   "name": "Surreal Biomes",
   "description": "Adds several new and unique biomes to explore.",
   "authors": [
@@ -19,8 +19,13 @@
     "main": [
       "me.crupette.surrealbiomes.SBBase"
     ],
-    "client": [],
-    "server": []
+    "client": [
+      "me.crupette.surrealbiomes.SBClient"
+    ],
+    "server": [],
+    "modmenu": [
+      "me.crupette.surrealbiomes.SBModMenuIntegration"
+    ]
   },
   "mixins": [],
   "depends": {

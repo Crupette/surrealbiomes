@@ -22,10 +22,9 @@ public class CrystalGrassBlock extends Block {
     public CrystalGrassBlock(Settings settings) {
         super(settings);
 
-        FiberId blockid = SBConfig.config.crystal_grass_spread_medium;
-        spreadMedium = Registry.BLOCK.get(new Identifier(blockid.getDomain(), blockid.getName()));
+        spreadMedium = SBConfig.config.crystal_grass_spread_block;
         if(spreadMedium.is(Blocks.AIR)){
-            SBBase.log(Level.ERROR, "Value for crystalSpreadMedium given invalid block id: \"" + SBConfig.config.crystal_grass_spread_medium.toString() + "\". Using minecraft:grass_block");
+            SBBase.log(Level.ERROR, "Value for crystalSpreadMedium given invalid block id: \"" + SBConfig.config.crystal_grass_spread_medium + "\". Using minecraft:grass_block");
             spreadMedium = Blocks.GRASS_BLOCK;
         }
     }
