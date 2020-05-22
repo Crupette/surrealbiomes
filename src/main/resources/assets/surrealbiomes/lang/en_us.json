@@ -28,11 +28,20 @@
     "block.surrealbiomes.greener_crystal_shardling": "Greener Crystal Shardling",
     "block.surrealbiomes.bluer_crystal_shardling": "Bluer Crystal Shardling",
 
+    "block.surrealbiomes.black_sand": "Black Sand",
     "block.surrealbiomes.red_sand": "Red Sand",
-    "block.surrealbiomes.orange_sand": "Orange Sand",
-    "block.surrealbiomes.yellow_sand": "Yellow Sand",
     "block.surrealbiomes.green_sand": "Green Sand",
+    "block.surrealbiomes.brown_sand": "Brown Sand",
     "block.surrealbiomes.blue_sand": "Blue Sand",
     "block.surrealbiomes.purple_sand": "Purple Sand",
+    "block.surrealbiomes.cyan_sand": "Cyan Sand",
+    "block.surrealbiomes.light_gray_sand": "Light Gray Sand",
+    "block.surrealbiomes.gray_sand": "Gray Sand",
+    "block.surrealbiomes.pink_sand": "Pink Sand",
+    "block.surrealbiomes.lime_sand": "Lime Sand",
+    "block.surrealbiomes.yellow_sand": "Yellow Sand",
+    "block.surrealbiomes.light_blue_sand": "Light Blue Sand",
+    "block.surrealbiomes.magenta_sand": "Magenta Sand",
+    "block.surrealbiomes.orange_sand": "Orange Sand",
     "block.surrealbiomes.white_sand": "White Sand"
 }

@@ -1,5 +1,5 @@
 {
   "variants": {
-    "": { "model": "surrealbiomes:block/orange_sand" }
+    "": { "model": "surrealbiomes:block/sand/orange_sand" }
   }
 }

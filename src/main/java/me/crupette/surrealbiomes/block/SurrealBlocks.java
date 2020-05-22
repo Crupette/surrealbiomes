@@ -23,15 +23,22 @@ public class SurrealBlocks {
     public static final Block BLUER_CRYSTAL_SHARDLING = new Block(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).nonOpaque().noCollision().sounds(BlockSoundGroup.GLASS).breakByTool(FabricToolTags.PICKAXES).strength(0.1F));
     public static final Block GREENER_CRYSTAL_SHARDLING = new Block(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).nonOpaque().noCollision().sounds(BlockSoundGroup.GLASS).breakByTool(FabricToolTags.PICKAXES).strength(0.1F));
 
+    public static final Block BLACK_SAND = new SandBlock(0x000000, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.BLACK).strength(0.5F).sounds(BlockSoundGroup.SAND));
     public static final Block RED_SAND = new SandBlock(0xDD8080, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.RED).strength(0.5F).sounds(BlockSoundGroup.SAND));
-    public static final Block ORANGE_SAND = new SandBlock(0xDDAA80, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.RED).strength(0.5F).sounds(BlockSoundGroup.SAND));
-    public static final Block YELLOW_SAND = new SandBlock(0xDDDD80, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.RED).strength(0.5F).sounds(BlockSoundGroup.SAND));
-    public static final Block LIME_SAND = new SandBlock(0xAADD80, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.RED).strength(0.5F).sounds(BlockSoundGroup.SAND));
-    public static final Block GREEN_SAND = new SandBlock(0x80DD80, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.RED).strength(0.5F).sounds(BlockSoundGroup.SAND));
-    public static final Block CYAN_SAND = new SandBlock(0x80DDAA, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.RED).strength(0.5F).sounds(BlockSoundGroup.SAND));
-    public static final Block BLUE_SAND = new SandBlock(0x8080DD, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.RED).strength(0.5F).sounds(BlockSoundGroup.SAND));
-    public static final Block PURPLE_SAND = new SandBlock(0xAA80DD, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.RED).strength(0.5F).sounds(BlockSoundGroup.SAND));
-    public static final Block WHITE_SAND = new SandBlock(0xEEEEEE, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.RED).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block GREEN_SAND = new SandBlock(0x80DD80, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.GREEN).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block BROWN_SAND = new SandBlock(0x8B4513, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.BROWN).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block BLUE_SAND = new SandBlock(0x8080DD, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.BLUE).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block PURPLE_SAND = new SandBlock(0xAA80DD, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.PURPLE).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block CYAN_SAND = new SandBlock(0x80DDAA, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.CYAN).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block LIGHT_GRAY_SAND = new SandBlock(0xAAAAAA, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.LIGHT_GRAY).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block GRAY_SAND = new SandBlock(0x808080, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.GRAY).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block PINK_SAND = new SandBlock(0xDDAAAA, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.PINK).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block LIME_SAND = new SandBlock(0xAADD80, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.LIME).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block YELLOW_SAND = new SandBlock(0xDDDD80, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.YELLOW).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block LIGHT_BLUE_SAND = new SandBlock(0xAAAADD, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.LIGHT_BLUE).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block MAGENTA_SAND = new SandBlock(0xDDAADD, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.MAGENTA).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block ORANGE_SAND = new SandBlock(0xDDAA80, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.ORANGE).strength(0.5F).sounds(BlockSoundGroup.SAND));
+    public static final Block WHITE_SAND = new SandBlock(0xEEEEEE, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.WHITE).strength(0.5F).sounds(BlockSoundGroup.SAND));
 
     private static void registerBlock(Identifier identifier, Block block, ItemGroup group){
         Registry.register(Registry.BLOCK, identifier, block);
@@ -44,14 +51,21 @@ public class SurrealBlocks {
         registerBlock(new Identifier(SBBase.MOD_ID, "bluer_crystal_shardling"), BLUER_CRYSTAL_SHARDLING, ItemGroup.DECORATIONS);
         registerBlock(new Identifier(SBBase.MOD_ID, "greener_crystal_shardling"), GREENER_CRYSTAL_SHARDLING, ItemGroup.DECORATIONS);
 
+        registerBlock(new Identifier(SBBase.MOD_ID, "black_sand"), BLACK_SAND, ItemGroup.BUILDING_BLOCKS);
         registerBlock(new Identifier(SBBase.MOD_ID, "red_sand"), RED_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "orange_sand"), ORANGE_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "yellow_sand"), YELLOW_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "lime_sand"), LIME_SAND, ItemGroup.BUILDING_BLOCKS);
         registerBlock(new Identifier(SBBase.MOD_ID, "green_sand"), GREEN_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "cyan_sand"), CYAN_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock(new Identifier(SBBase.MOD_ID, "brown_sand"), BROWN_SAND, ItemGroup.BUILDING_BLOCKS);
         registerBlock(new Identifier(SBBase.MOD_ID, "blue_sand"), BLUE_SAND, ItemGroup.BUILDING_BLOCKS);
         registerBlock(new Identifier(SBBase.MOD_ID, "purple_sand"), PURPLE_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock(new Identifier(SBBase.MOD_ID, "cyan_sand"), CYAN_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock(new Identifier(SBBase.MOD_ID, "light_gray_sand"), LIGHT_GRAY_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock(new Identifier(SBBase.MOD_ID, "gray_sand"), GRAY_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock(new Identifier(SBBase.MOD_ID, "pink_sand"), PINK_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock(new Identifier(SBBase.MOD_ID, "lime_sand"), LIME_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock(new Identifier(SBBase.MOD_ID, "yellow_sand"), YELLOW_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock(new Identifier(SBBase.MOD_ID, "light_blue_sand"), LIGHT_BLUE_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock(new Identifier(SBBase.MOD_ID, "magenta_sand"), MAGENTA_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock(new Identifier(SBBase.MOD_ID, "orange_sand"), ORANGE_SAND, ItemGroup.BUILDING_BLOCKS);
         registerBlock(new Identifier(SBBase.MOD_ID, "white_sand"), WHITE_SAND, ItemGroup.BUILDING_BLOCKS);
 
     }
