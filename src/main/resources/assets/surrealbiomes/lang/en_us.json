@@ -1,4 +1,6 @@
 {
+    "screen.surrealbiomes.config": "Cannot open config screen",
+    "text.surrealbiomes.config_explain": "The current version of cloth, the config screen builder we used, is broken for this version of minecraft. Please edit the config file in the config directory instead.",
     "title.surrealbiomes.config": "Surreal Biomes",
 
     "category.surrealbiomes.crystal_category": "Crystaline Biomes",

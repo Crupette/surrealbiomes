@@ -1,10 +1,10 @@
 package me.crupette.surrealbiomes;
 
 import me.crupette.surrealbiomes.block.SurrealBlocks;
-import me.shedaniel.clothconfig2.api.ConfigBuilder;
-import me.shedaniel.clothconfig2.api.ConfigCategory;
-import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
-import me.shedaniel.clothconfig2.impl.builders.DropdownMenuBuilder;
+//import me.shedaniel.clothconfig2.api.ConfigBuilder;
+//import me.shedaniel.clothconfig2.api.ConfigCategory;
+//import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
+//import me.shedaniel.clothconfig2.impl.builders.DropdownMenuBuilder;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -23,6 +23,9 @@ public class SBClient implements ClientModInitializer {
     }
 
     public static Screen createConfigScreen(Screen parent){
+        return parent;
+    }
+        /*
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
                 .setTitle(new TranslatableText("title.surrealbiomes.config"));
@@ -140,5 +143,5 @@ public class SBClient implements ClientModInitializer {
                 .build());
 
         return builder.build();
-    }
+    }*/
 }

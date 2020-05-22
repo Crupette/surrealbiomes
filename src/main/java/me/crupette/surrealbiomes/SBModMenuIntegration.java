@@ -2,6 +2,7 @@ package me.crupette.surrealbiomes;
 
 import io.github.prospector.modmenu.api.ConfigScreenFactory;
 import io.github.prospector.modmenu.api.ModMenuApi;
+import me.crupette.surrealbiomes.client.gui.screen.ConfigScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
@@ -14,6 +15,6 @@ public class SBModMenuIntegration implements ModMenuApi {
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return SBClient::createConfigScreen;
+        return ConfigScreen::new;
     }
 }
