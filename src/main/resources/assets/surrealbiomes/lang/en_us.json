@@ -1,4 +1,21 @@
 {
+    "title.surrealbiomes.config": "Surreal Biomes",
+
+    "category.surrealbiomes.crystal_category": "Crystaline Biomes",
+    "option.surrealbiomes.crystal_plains_chance": "Crystaline Plains chance",
+    "option.surrealbiomes.crystal_forest_chance": "Crystaline Forest chance",
+    "option.surrealbiomes.crystal_grass_tick": "Crystal Grass ticking",
+    "option.surrealbiomes.crystaline_takeover": "Crystaline takeover",
+    "option.surrealbiomes.crystal_grass_medium": "Crystal Grass spread medium",
+
+    "category.surrealbiomes.crystal_struct":"Crystal Structures",
+    "option.surrealbiomes.crystal_width_min": "Crystal minimum width",
+    "option.surrealbiomes.crystal_width_max": "Crystal maximum width",
+    "option.surrealbiomes.crystal_height_min": "Crystal minimum height",
+    "option.surrealbiomes.crystal_height_max": "Crystal maximum height",
+    "option.surrealbiomes.crystal_spread": "Crystal spread",
+    "option.surrealbiomes.crystal_tilt": "Crystal tilt multiplier",
+
     "biome.surrealbiomes.crystaline_plains": "Crystaline Plains",
     "biome.surrealbiomes.crystaline_forest": "Crystaline Forest",
 
