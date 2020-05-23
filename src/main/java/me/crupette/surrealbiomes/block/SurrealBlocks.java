@@ -77,4 +77,5 @@ public class SurrealBlocks {
         BlockRenderLayerMap.INSTANCE.putBlock(BLUER_CRYSTAL_SHARDLING, RenderLayer.getCutout());
     }
 
+
 }

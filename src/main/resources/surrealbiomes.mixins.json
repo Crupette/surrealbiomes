@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.crupette.surrealbiomes.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "CactusBlockMixin",
+    "DeadBushBlockMixin",
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
