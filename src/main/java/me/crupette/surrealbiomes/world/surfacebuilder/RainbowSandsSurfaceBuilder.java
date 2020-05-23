@@ -2,6 +2,7 @@ package me.crupette.surrealbiomes.world.surfacebuilder;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
+import me.crupette.surrealbiomes.SBConfig;
 import me.crupette.surrealbiomes.block.SurrealBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -41,7 +42,10 @@ public class RainbowSandsSurfaceBuilder extends SurfaceBuilder<TernarySurfaceCon
     }
 
     protected void generate(Random random, Chunk chunk, Biome biome, int x, int z, int height, double noise, BlockState replacedBlock, BlockState fluidBlock, BlockState underwaterBlock, int seaLevel) {
-        int color = (int)(this.colorNoise.sample((double)x * 0.01, (double)z * 0.01, false) * COLOR_BLOCKS.length);
+        int color = (int)(this.colorNoise.sample(
+                (double)x * SBConfig.config.rainbow_frequency,
+                (double)z * SBConfig.config.rainbow_frequency * 2,
+                false) * COLOR_BLOCKS.length);
 
         BlockState topBlock = COLOR_BLOCKS[Math.abs(color)];
         BlockState topState = topBlock;

@@ -4,8 +4,8 @@
     "title.surrealbiomes.config": "Surreal Biomes",
 
     "category.surrealbiomes.crystal_category": "Crystaline Biomes",
+    "tooltip.surrealbiomes.biome_chance": "Sets the chance for this biome to generate in the world (0 to disable, 1 to make it as common as normal biomes)",
     "option.surrealbiomes.crystal_plains_chance": "Crystaline Plains chance",
-    "tooltip.surrealbiomes.crystal_plains_chance": "Sets the chance for this biome to generate in the world (0 to disable, 1 to make it as common as normal biomes)",
     "option.surrealbiomes.crystal_forest_chance": "Crystaline Forest chance",
     "option.surrealbiomes.crystal_grass_tick": "Crystal Grass ticking",
     "option.surrealbiomes.crystaline_takeover": "Crystaline takeover",
@@ -18,6 +18,10 @@
     "option.surrealbiomes.crystal_height_max": "Crystal maximum height",
     "option.surrealbiomes.crystal_spread": "Crystal spread",
     "option.surrealbiomes.crystal_tilt": "Crystal tilt multiplier",
+
+    "category.surrealbiomes.rainbow_desert": "Rainbow Desert",
+    "option.surrealbiomes.rainbow_desert_chance": "Rainbow Desert chance",
+    "option.surrealbiomes.rainbow_frequency": "Rainbow spread",
 
     "biome.surrealbiomes.crystaline_plains": "Crystaline Plains",
     "biome.surrealbiomes.crystaline_forest": "Crystaline Forest",

@@ -93,11 +93,6 @@ public class SBConfig {
         @Constrain.Range(min = 0.D, max = 1.D, step = 0.01D)
         public double crystaline_forest_chance = CRYSTALINE_FOREST_CHANCE_DEFUALT;
 
-        public static final double RAINBOW_DESERT_CHANCE_DEFAULT = 0.03D;
-        @Setting(comment = "Rainbow desert rarity (0 disables, 1 is very common) default 0.03")
-        @Constrain.Range(min = 0.D, max = 1.D, step = 0.01D)
-        public double rainbow_desert_chance = RAINBOW_DESERT_CHANCE_DEFAULT;
-
         public static final boolean CRYSTALINE_GRASS_SPREAD_DEFAULT = true;
         @Setting(comment = "If Crystal grass is spreadable (disable to stop crystal grass ticking. default: true)")
         public boolean crystaline_grass_spread = CRYSTALINE_GRASS_SPREAD_DEFAULT;
@@ -153,7 +148,18 @@ public class SBConfig {
                 "minecraft:cyan_stained_glass",
                 "minecraft:white_stained_glass",
                 "minecraft:white_stained_glass"));
-        //Bug with fiber. Can't handle parsing a list of strings ("JsonPrimitive cannot be cast to java.lang.String")
+        //Bug with fiber. Can't handle parsing a list of strings ("JsonPrimitive cannot be cast to java.lang.String") fixed in 0.22
+
+        public static final double RAINBOW_DESERT_CHANCE_DEFAULT = 0.03D;
+        @Setting(comment = "Rainbow desert rarity (0 disables, 1 is very common) default 0.03")
+        @Constrain.Range(min = 0.D, max = 1.D, step = 0.01D)
+        public double rainbow_desert_chance = RAINBOW_DESERT_CHANCE_DEFAULT;
+
+
+        public static final double RAINBOW_FREQUENCY_DEFAULT = 0.01D;
+        @Setting(comment = "Rainbow desert rainbow frequency")
+        @Constrain.Range(min = 0.01D, max = 1.D, step = 0.01D)
+        public double rainbow_frequency = RAINBOW_FREQUENCY_DEFAULT;
     }
 }
 

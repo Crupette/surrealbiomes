@@ -33,7 +33,7 @@ public class SBClient implements ClientModInitializer {
         ConfigCategory crystalCategory = builder.getOrCreateCategory(new TranslatableText("category.surrealbiomes.crystal_category"));
         crystalCategory.addEntry(entryBuilder.startDoubleField(new TranslatableText("option.surrealbiomes.crystal_plains_chance"), SBConfig.config.crystaline_plains_chance)
                 .setDefaultValue(SBConfig.Config.CRYSTALINE_PLAINS_CHANCE_DEFUALT)
-                .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_plains_chance"))
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.biome_chance"))
                 .setMin(0.0).setMax(1.0).requireRestart().setSaveConsumer(newValue -> {
                     SBConfig.config.crystaline_plains_chance = newValue;
                     SBConfig.saveConfig();
@@ -42,7 +42,7 @@ public class SBClient implements ClientModInitializer {
 
         crystalCategory.addEntry(entryBuilder.startDoubleField(new TranslatableText("option.surrealbiomes.crystal_forest_chance"), SBConfig.config.crystaline_forest_chance)
                 .setDefaultValue(SBConfig.Config.CRYSTALINE_FOREST_CHANCE_DEFUALT)
-                .setTooltip(new TranslatableText("Sets the chance for this biome to generate in the world (0 to disable, 1 to make it as common as normal biomes)"))
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.biome_chance"))
                 .setMin(0.0).setMax(1.0).requireRestart().setSaveConsumer(newValue -> {
                     SBConfig.config.crystaline_forest_chance = newValue;
                     SBConfig.saveConfig();
@@ -135,6 +135,25 @@ public class SBClient implements ClientModInitializer {
                 .setTooltip(new TranslatableText("Controls how far the crystals can lean from their origin"))
                 .setMin(0.0F).setMax(4.0F).setSaveConsumer(newValue -> {
                     SBConfig.config.crystal_tilt = newValue;
+                    SBConfig.saveConfig();
+                })
+                .build());
+
+        ConfigCategory rainbowDesertCategory = builder.getOrCreateCategory(new TranslatableText("category.surrealbiomes.rainbow_desert"));
+        rainbowDesertCategory.addEntry(entryBuilder.startDoubleField(new TranslatableText("option.surrealbiomes.rainbow_desert_chance"), SBConfig.config.rainbow_desert_chance)
+                .setDefaultValue(SBConfig.Config.RAINBOW_DESERT_CHANCE_DEFAULT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.biome_chance"))
+                .setMax(0.0).setMax(1.0).requireRestart().setSaveConsumer(newValue -> {
+                    SBConfig.config.rainbow_desert_chance = newValue;
+                    SBConfig.saveConfig();
+                })
+                .build());
+
+        rainbowDesertCategory.addEntry(entryBuilder.startDoubleField(new TranslatableText("option.surrealbiomes.rainbow_frequency"), SBConfig.config.rainbow_frequency)
+                .setDefaultValue(SBConfig.Config.RAINBOW_FREQUENCY_DEFAULT)
+                .setTooltip(new TranslatableText("How spread the rainbow effect is"))
+                .setMax(0.01).setMax(1.0).setSaveConsumer(newValue -> {
+                    SBConfig.config.rainbow_frequency = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
