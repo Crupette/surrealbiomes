@@ -15,6 +15,6 @@ public class SBModMenuIntegration implements ModMenuApi {
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return ConfigScreen::new;
+        return SBClient::createConfigScreen;
     }
 }
