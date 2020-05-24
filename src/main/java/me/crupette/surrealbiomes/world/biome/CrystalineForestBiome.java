@@ -1,7 +1,9 @@
 package me.crupette.surrealbiomes.world.biome;
 
 import com.google.common.collect.ImmutableSet;
+import me.crupette.surrealbiomes.SBConfig;
 import me.crupette.surrealbiomes.block.SurrealBlocks;
+import me.crupette.surrealbiomes.world.feature.CrystalFeatureConfig;
 import me.crupette.surrealbiomes.world.feature.SurrealFeatures;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -30,7 +32,9 @@ public class CrystalineForestBiome extends Biome {
 
         DefaultBiomeFeatures.method_28440(this);
         this.addStructureFeature(DefaultBiomeFeatures.field_24711);
-        this.addFeature(GenerationStep.Feature.RAW_GENERATION, SurrealFeatures.CRYSTAL.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(2))));
+        this.addFeature(GenerationStep.Feature.RAW_GENERATION, SurrealFeatures.CRYSTAL.configure(
+                new CrystalFeatureConfig.Builder(SBConfig.config.crystalStructure).build())
+                .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(2))));
 
         DefaultBiomeFeatures.addLandCarvers(this);
         DefaultBiomeFeatures.addDefaultLakes(this);

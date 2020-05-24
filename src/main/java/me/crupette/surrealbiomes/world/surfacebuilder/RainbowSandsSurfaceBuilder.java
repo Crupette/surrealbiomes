@@ -6,11 +6,9 @@ import me.crupette.surrealbiomes.SBConfig;
 import me.crupette.surrealbiomes.block.SurrealBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.FallingBlock;
 import net.minecraft.block.SandBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.noise.OctaveSimplexNoiseSampler;
-import net.minecraft.util.math.noise.SimplexNoiseSampler;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.ChunkRandom;
@@ -43,8 +41,8 @@ public class RainbowSandsSurfaceBuilder extends SurfaceBuilder<TernarySurfaceCon
 
     protected void generate(Random random, Chunk chunk, Biome biome, int x, int z, int height, double noise, BlockState replacedBlock, BlockState fluidBlock, BlockState underwaterBlock, int seaLevel) {
         int color = (int)(this.colorNoise.sample(
-                (double)x * SBConfig.config.rainbow_frequency,
-                (double)z * SBConfig.config.rainbow_frequency * 2,
+                (double)x * SBConfig.config.rainbow.frequency,
+                (double)z * SBConfig.config.rainbow.frequency * 2,
                 false) * COLOR_BLOCKS.length);
 
         BlockState topBlock = COLOR_BLOCKS[Math.abs(color)];

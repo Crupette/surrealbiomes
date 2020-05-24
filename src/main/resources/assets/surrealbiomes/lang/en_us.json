@@ -18,6 +18,7 @@
     "option.surrealbiomes.crystal_height_max": "Crystal maximum height",
     "option.surrealbiomes.crystal_spread": "Crystal spread",
     "option.surrealbiomes.crystal_tilt": "Crystal tilt multiplier",
+    "option.surrealbiomes.crystal_blocks": "Crystal structure blocks",
 
     "category.surrealbiomes.rainbow_desert": "Rainbow Desert",
     "option.surrealbiomes.rainbow_desert_chance": "Rainbow Desert chance",
