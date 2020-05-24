@@ -6,6 +6,8 @@
   "mixins": [
     "CactusBlockMixin",
     "DeadBushBlockMixin",
+    ,
+    "RabbitEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
