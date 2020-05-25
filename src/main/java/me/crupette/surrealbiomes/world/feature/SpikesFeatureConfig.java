@@ -29,7 +29,7 @@ public class SpikesFeatureConfig implements FeatureConfig {
                         .forGetter(spikesFeatureConfig -> {
                             return spikesFeatureConfig.maxHeight;
                         }),
-                Codec.INT.fieldOf("falloff")
+                Codec.FLOAT.fieldOf("falloff")
                         .withDefault(SBConfig.Config.RainbowFeaturesGroup.RAINBOW_SPIKE_FALLOFF_DEFAULT)
                         .forGetter(spikesFeatureConfig -> {
                             return spikesFeatureConfig.falloff;
@@ -45,11 +45,12 @@ public class SpikesFeatureConfig implements FeatureConfig {
         ).apply(instance, SpikesFeatureConfig::new);
     });
 
-    public final int minRadius, maxRadius, maxHeight, falloff;
+    public final int minRadius, maxRadius, maxHeight;
+    public final float falloff;
     public final List<BlockState> surfaceBlocks, compositionBlocks;
 
     protected SpikesFeatureConfig(int minRadius, int maxRadius,
-                                  int maxHeight, int falloff,
+                                  int maxHeight, float falloff,
                                   List<BlockState> surfaceBlocks,
                                   List<BlockState> compositionBlocks){
         this.minRadius = minRadius;
@@ -61,7 +62,8 @@ public class SpikesFeatureConfig implements FeatureConfig {
     }
 
     public static class Builder {
-        public final int minRadius, maxRadius, maxHeight, falloff;
+        public final int minRadius, maxRadius, maxHeight;
+        public final float falloff;
         public final List<BlockState> surfaceBlocks, compositionBlocks;
 
         public Builder(SBConfig.Config.RainbowFeaturesGroup config){

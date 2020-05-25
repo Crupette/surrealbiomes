@@ -22,7 +22,7 @@ public class SpikesFeature extends Feature<SpikesFeatureConfig> {
         for(int x = -radius; x <= radius; x++)
             for(int z = -radius; z <= radius; z++){
                 if(Math.abs(x) + Math.abs(z) > radius) continue;
-                int height = random.nextInt((int) (config.maxHeight - (Math.abs(x + z) * ((float)1 / config.falloff))));
+                int height = random.nextInt((int) (config.maxHeight - (Math.abs(x + z) * (1.f / config.falloff))));
 
                 BlockPos cpos = pos.add(x, 0, z);
                 do {

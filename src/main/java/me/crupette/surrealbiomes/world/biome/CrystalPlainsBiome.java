@@ -22,8 +22,8 @@ import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
-public class CrystalinePlainsBiome extends Biome {
-    public CrystalinePlainsBiome() {
+public class CrystalPlainsBiome extends Biome {
+    public CrystalPlainsBiome() {
         super(new Biome.Settings().configureSurfaceBuilder(SurfaceBuilder.DEFAULT, new TernarySurfaceConfig(
                 SurrealBlocks.CRYSTAL_GRASS.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState()))
                 .precipitation(Precipitation.RAIN).category(Category.FOREST).depth(0.125F).scale(0.05F).temperature(0.9F).downfall(1.F).effects(

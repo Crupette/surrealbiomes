@@ -87,10 +87,10 @@ public class SBConfig {
     @Settings
     public static class Config {
 
-        @Setting.Group(name = "crystaline_biome_settings")
+        @Setting.Group(name = "crystal_biome_settings")
         public CrystalGroup crystal = new CrystalGroup();
 
-        @Setting.Group(name = "crystaline_structures_settings")
+        @Setting.Group(name = "crystal_structures_settings")
         public CrystalStructureGroup crystalStructure = new CrystalStructureGroup();
 
         @Setting.Group(name = "rainbow_desert_biome_settings")
@@ -197,9 +197,9 @@ public class SBConfig {
             public int rainbow_spike_height_max = RAINBOW_SPIKE_HEIGHT_MAX_DEFAULT;
 
             @Setting(ignore = true)
-            public static final int RAINBOW_SPIKE_FALLOFF_DEFAULT = 1;
+            public static final float RAINBOW_SPIKE_FALLOFF_DEFAULT = 1.F;
             @Constrain.Range(min = 1, max = 16)
-            public int rainbow_spike_falloff = RAINBOW_SPIKE_FALLOFF_DEFAULT;
+            public float rainbow_spike_falloff = RAINBOW_SPIKE_FALLOFF_DEFAULT;
 
             public List<Block> rainbow_spike_root_blocks = new ArrayList<>(Arrays.asList(
                     Blocks.SANDSTONE, Blocks.STONE,
