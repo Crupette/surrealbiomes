@@ -22,6 +22,7 @@ import io.github.fablabsmc.fablabs.impl.fiber.serialization.FiberSerialization;
 import me.crupette.surrealbiomes.SBBase;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -94,6 +95,9 @@ public class SBConfig {
 
         @Setting.Group(name = "rainbow_desert_biome_settings")
         public RainbowGroup rainbow = new RainbowGroup();
+
+        @Setting.Group(name = "rainbow_spike_structure_settings")
+        public RainbowFeaturesGroup rainbowFeatures = new RainbowFeaturesGroup();
 
         public static class CrystalGroup {
             @Setting(ignore = true)
@@ -175,6 +179,40 @@ public class SBConfig {
             @Constrain.Range(min = 0.01D, max = 1.D, step = 0.01D)
             public double frequency = FREQUENCY_DEFAULT;
         }
+
+        public class RainbowFeaturesGroup {
+            @Setting(ignore = true)
+            public static final int RAINBOW_SPIKE_RADIUS_MIN_DEFAULT = 8;
+            @Constrain.Range(min = 4, max = 16)
+            public int rainbow_spike_radius_min = RAINBOW_SPIKE_RADIUS_MIN_DEFAULT;
+
+            @Setting(ignore = true)
+            public static final int RAINBOW_SPIKE_RADIUS_MAX_DEFAULT = 16;
+            @Constrain.Range(min = 4, max = 16)
+            public int rainbow_spike_radius_max = RAINBOW_SPIKE_RADIUS_MAX_DEFAULT;
+
+            @Setting(ignore = true)
+            public static final int RAINBOW_SPIKE_HEIGHT_MAX_DEFAULT = 16;
+            @Constrain.Range(min = 8, max = 128)
+            public int rainbow_spike_height_max = RAINBOW_SPIKE_HEIGHT_MAX_DEFAULT;
+
+            @Setting(ignore = true)
+            public static final int RAINBOW_SPIKE_FALLOFF_DEFAULT = 1;
+            @Constrain.Range(min = 1, max = 16)
+            public int rainbow_spike_falloff = RAINBOW_SPIKE_FALLOFF_DEFAULT;
+
+            public List<Block> rainbow_spike_root_blocks = new ArrayList<>(Arrays.asList(
+                    Blocks.SANDSTONE, Blocks.STONE,
+                    Blocks.ANDESITE, Blocks.DIORITE,
+                    Blocks.GRANITE
+            ));
+
+            public List<Block> rainbow_spike_composition_blocks = new ArrayList<>(Arrays.asList(
+                    Blocks.TERRACOTTA, Blocks.RED_TERRACOTTA, Blocks.ORANGE_TERRACOTTA,
+                    Blocks.YELLOW_TERRACOTTA, Blocks.GREEN_TERRACOTTA, Blocks.BLUE_TERRACOTTA,
+                    Blocks.PURPLE_TERRACOTTA, Blocks.PINK_TERRACOTTA, Blocks.CYAN_TERRACOTTA
+            ));
+        };
     }
 }
 

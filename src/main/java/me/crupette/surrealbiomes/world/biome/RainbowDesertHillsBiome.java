@@ -1,5 +1,9 @@
 package me.crupette.surrealbiomes.world.biome;
 
+import me.crupette.surrealbiomes.SBConfig;
+import me.crupette.surrealbiomes.world.feature.CrystalFeatureConfig;
+import me.crupette.surrealbiomes.world.feature.SpikesFeatureConfig;
+import me.crupette.surrealbiomes.world.feature.SurrealFeatures;
 import me.crupette.surrealbiomes.world.surfacebuilder.SurrealSurfaceBuilders;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -7,6 +11,11 @@ import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
+import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.decorator.CountDecoratorConfig;
+import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig;
+import net.minecraft.world.gen.decorator.Decorator;
+import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
 public class RainbowDesertHillsBiome extends Biome {
@@ -33,6 +42,12 @@ public class RainbowDesertHillsBiome extends Biome {
         DefaultBiomeFeatures.addSprings(this);
         DefaultBiomeFeatures.addDesertFeatures(this);
         DefaultBiomeFeatures.addFrozenTopLayer(this);
+
+        this.addFeature(GenerationStep.Feature.RAW_GENERATION, SurrealFeatures.SPIKES.configure(new SpikesFeatureConfig.Builder(SBConfig.config.rainbowFeatures).build())
+                .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(
+                        new CountExtraChanceDecoratorConfig(0, 0.8F, 1)
+                )));
+
         this.addSpawn(SpawnGroup.CREATURE, new SpawnEntry(EntityType.RABBIT, 4, 2, 3));
         this.addSpawn(SpawnGroup.AMBIENT, new SpawnEntry(EntityType.BAT, 10, 8, 8));
         this.addSpawn(SpawnGroup.MONSTER, new SpawnEntry(EntityType.SPIDER, 100, 4, 4));
