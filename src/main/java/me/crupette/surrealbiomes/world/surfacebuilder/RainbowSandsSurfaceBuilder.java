@@ -1,9 +1,7 @@
 package me.crupette.surrealbiomes.world.surfacebuilder;
 
-import com.google.common.collect.ImmutableList;
-import com.mojang.serialization.Codec;
+import com.mojang.datafixers.Dynamic;
 import me.crupette.surrealbiomes.SBConfig;
-import me.crupette.surrealbiomes.block.SurrealBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SandBlock;
@@ -16,23 +14,15 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
 import java.util.Random;
+import java.util.function.Function;
 
 public class RainbowSandsSurfaceBuilder extends SurfaceBuilder<TernarySurfaceConfig> {
 
     protected OctaveSimplexNoiseSampler colorNoise;
     protected long seed;
 
-    private static final BlockState[] COLOR_BLOCKS = {
-            SurrealBlocks.RED_SAND.getDefaultState(),
-            SurrealBlocks.ORANGE_SAND.getDefaultState(),
-            SurrealBlocks.YELLOW_SAND.getDefaultState(),
-            SurrealBlocks.GREEN_SAND.getDefaultState(),
-            SurrealBlocks.BLUE_SAND.getDefaultState(),
-            SurrealBlocks.PURPLE_SAND.getDefaultState()
-    };
-
-    public RainbowSandsSurfaceBuilder(Codec<TernarySurfaceConfig> codec) {
-        super(codec);
+    public RainbowSandsSurfaceBuilder(Function<Dynamic<?>, ? extends TernarySurfaceConfig> function) {
+        super(function);
     }
 
     public void generate(Random random, Chunk chunk, Biome biome, int i, int j, int k, double d, BlockState blockState, BlockState blockState2, int l, long m, TernarySurfaceConfig ternarySurfaceConfig) {
@@ -59,7 +49,7 @@ public class RainbowSandsSurfaceBuilder extends SurfaceBuilder<TernarySurfaceCon
             BlockState blockState = chunk.getBlockState(blockPos);
             if (blockState.isAir()) {
                 surfaceRemaining = -1;
-            } else if (blockState.isOf(replacedBlock.getBlock())) {
+            } else if (blockState.getBlock() == replacedBlock.getBlock()) {
                 if (surfaceRemaining == -1) {
                     if (surfaceThickness <= 0) {
                         topState = Blocks.AIR.getDefaultState();
@@ -94,7 +84,7 @@ public class RainbowSandsSurfaceBuilder extends SurfaceBuilder<TernarySurfaceCon
                     chunk.setBlockState(blockPos, bottomState, false);
                     if (surfaceRemaining == 0 && bottomState.getBlock() instanceof SandBlock && surfaceThickness > 1) {
                         surfaceRemaining = random.nextInt(4) + Math.max(0, y - 63);
-                        bottomState = bottomState.isOf(Blocks.RED_SAND) ? Blocks.RED_SANDSTONE.getDefaultState() : Blocks.SANDSTONE.getDefaultState();
+                        bottomState = bottomState.getBlock() == Blocks.RED_SAND ? Blocks.RED_SANDSTONE.getDefaultState() : Blocks.SANDSTONE.getDefaultState();
                     }
                 }
             }
@@ -105,7 +95,7 @@ public class RainbowSandsSurfaceBuilder extends SurfaceBuilder<TernarySurfaceCon
     public void initSeed(long seed){
         if(this.seed != seed){
             ChunkRandom chunkRandom = new ChunkRandom(seed);
-            colorNoise = new OctaveSimplexNoiseSampler(chunkRandom, ImmutableList.of(0));
+            colorNoise = new OctaveSimplexNoiseSampler(chunkRandom, 0, 0);
             this.seed = seed;
         }
     }

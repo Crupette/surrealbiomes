@@ -46,7 +46,7 @@ public class SBConfig {
             Block.class, s -> {
                 Block ret = Registry.BLOCK.get(new Identifier(
                         s.substring(0, s.indexOf(':')), s.substring(s.indexOf(':') + 1)));
-                if(ret.is(Blocks.AIR)){
+                if(ret == Blocks.AIR){
                     SBBase.log(Level.ERROR, "Passed invalid block id in config: '" + s + "'. Defaulting to minecraft:grass_block");
                     return Blocks.GRASS_BLOCK;
                 }
@@ -159,7 +159,7 @@ public class SBConfig {
             public Block crystal_grass_spread_block = CRYSTAL_GRASS_SPREAD_BLOCK_DEFAULT;
         }
 
-        public class CrystalStructureGroup {
+        public static class CrystalStructureGroup {
             @Setting(ignore = true)
             public static final int CRYSTAL_RADIUS_MIN_DEFAULT = 2;
             @Constrain.Range(min = 1, max = 16, step = 1)
@@ -212,7 +212,7 @@ public class SBConfig {
             public List<Block> color_blocks;
         }
 
-        public class RainbowFeaturesGroup {
+        public static class RainbowFeaturesGroup {
             @Setting(ignore = true)
             public static final int RAINBOW_SPIKE_RADIUS_MIN_DEFAULT = 8;
             @Constrain.Range(min = 4, max = 16)

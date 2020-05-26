@@ -20,7 +20,7 @@ public class CrystalGrassBlock extends Block {
         super(settings);
 
         spreadMedium = SBConfig.config.crystal.crystal_grass_spread_block;
-        if(spreadMedium.is(Blocks.AIR)){
+        if(spreadMedium == (Blocks.AIR)){
             SBBase.log(Level.ERROR, "Value for crystalSpreadMedium given invalid block id: Using minecraft:grass_block");
             spreadMedium = Blocks.GRASS_BLOCK;
         }
@@ -36,9 +36,9 @@ public class CrystalGrassBlock extends Block {
         for(int y = -3; y <= 3; y++) for(int z = -3; z <= 3; z++) for(int x = -3; x <= 3; x++){
             if(Math.abs(x) + Math.abs(z) > 4) continue;
             BlockPos chkpos = pos.add(x, y + 1, z);
-            if(worldView.getBlockState(chkpos).isOf(SurrealBlocks.REDDER_CRYSTAL_SHARDLING)) return true;
-            if(worldView.getBlockState(chkpos).isOf(SurrealBlocks.GREENER_CRYSTAL_SHARDLING)) return true;
-            if(worldView.getBlockState(chkpos).isOf(SurrealBlocks.BLUER_CRYSTAL_SHARDLING)) return true;
+            if(worldView.getBlockState(chkpos).getBlock() == (SurrealBlocks.REDDER_CRYSTAL_SHARDLING)) return true;
+            if(worldView.getBlockState(chkpos).getBlock() == (SurrealBlocks.GREENER_CRYSTAL_SHARDLING)) return true;
+            if(worldView.getBlockState(chkpos).getBlock() == (SurrealBlocks.BLUER_CRYSTAL_SHARDLING)) return true;
         }
         return false;
     }
@@ -55,7 +55,7 @@ public class CrystalGrassBlock extends Block {
                     random.nextInt(5) - 3,
                     random.nextInt(3) - 1);
 
-            if (world.getBlockState(spreadpos).isOf(spreadMedium) && canSpread(state, world, spreadpos)) {
+            if (world.getBlockState(spreadpos).getBlock() == (spreadMedium) && canSpread(state, world, spreadpos)) {
                 world.setBlockState(spreadpos, SurrealBlocks.CRYSTAL_GRASS.getDefaultState());
                 int growchance = random.nextInt(4);
                 if(growchance == 0 && SBConfig.config.crystal.takeover){

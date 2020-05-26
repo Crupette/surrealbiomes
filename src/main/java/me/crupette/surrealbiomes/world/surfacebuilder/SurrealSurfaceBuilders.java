@@ -9,5 +9,5 @@ import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 public class SurrealSurfaceBuilders {
 
     public static final SurfaceBuilder<TernarySurfaceConfig> RAINBOW_SANDS = Registry.register(
-            Registry.SURFACE_BUILDER, new Identifier(SBBase.MOD_ID, "rainbow_sands"), new RainbowSandsSurfaceBuilder(TernarySurfaceConfig.CODEC));
+            Registry.SURFACE_BUILDER, new Identifier(SBBase.MOD_ID, "rainbow_sands"), new RainbowSandsSurfaceBuilder(TernarySurfaceConfig::deserialize));
 }

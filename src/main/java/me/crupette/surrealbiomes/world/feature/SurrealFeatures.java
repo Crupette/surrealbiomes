@@ -9,8 +9,8 @@ import net.minecraft.world.gen.feature.Feature;
 public class SurrealFeatures {
 
     public static final CrystalFeature CRYSTAL = Registry.register(
-            Registry.FEATURE, new Identifier(SBBase.MOD_ID, "crystal"), new CrystalFeature(CrystalFeatureConfig.CODEC));
+            Registry.FEATURE, new Identifier(SBBase.MOD_ID, "crystal"), new CrystalFeature(CrystalFeatureConfig::deserialize));
 
     public static final SpikesFeature SPIKES = Registry.register(
-            Registry.FEATURE, new Identifier(SBBase.MOD_ID, "spikes"), new SpikesFeature(SpikesFeatureConfig.CODEC));
+            Registry.FEATURE, new Identifier(SBBase.MOD_ID, "spikes"), new SpikesFeature(SpikesFeatureConfig::deserialize));
 }
