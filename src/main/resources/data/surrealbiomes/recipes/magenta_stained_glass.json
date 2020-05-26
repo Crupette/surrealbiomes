@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "group": "stained_glass_dyed_sand",
+  "ingredient": {
+    "item": "surrealbiomes:magenta_sand"
+  },
+  "result": "minecraft:magenta_stained_glass",
+  "experience": 0.1,
+  "cookingTime": 200
+}

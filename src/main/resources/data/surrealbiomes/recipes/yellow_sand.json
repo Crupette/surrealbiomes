@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "dyed_sand",
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:sand"
+    },
+    "B": {
+      "item": "minecraft:yellow_dye"
+    }
+  },
+  "result": {
+    "item": "surrealbiomes:yellow_sand",
+    "count": 8
+  }
+}

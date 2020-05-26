@@ -30,114 +30,180 @@ public class SBClient implements ClientModInitializer {
 
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
-        ConfigCategory crystalCategory = builder.getOrCreateCategory(new TranslatableText("category.surrealbiomes.crystal_category"));
-        crystalCategory.addEntry(entryBuilder.startDoubleField(new TranslatableText("option.surrealbiomes.crystal_plains_chance"), SBConfig.config.crystaline_plains_chance)
-                .setDefaultValue(SBConfig.Config.CRYSTALINE_PLAINS_CHANCE_DEFUALT)
-                .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_plains_chance"))
+        ConfigCategory crystalCategory = builder.getOrCreateCategory(new TranslatableText("category.surrealbiomes.crystal"));
+        crystalCategory.addEntry(entryBuilder.startDoubleField(new TranslatableText("option.surrealbiomes.crystal.plains_chance"), SBConfig.config.crystal.plains_chance)
+                .setDefaultValue(SBConfig.Config.CrystalGroup.PLAINS_CHANCE_DEFUALT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.biome_chance"))
                 .setMin(0.0).setMax(1.0).requireRestart().setSaveConsumer(newValue -> {
-                    SBConfig.config.crystaline_plains_chance = newValue;
+                    SBConfig.config.crystal.plains_chance = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
-        crystalCategory.addEntry(entryBuilder.startDoubleField(new TranslatableText("option.surrealbiomes.crystal_forest_chance"), SBConfig.config.crystaline_forest_chance)
-                .setDefaultValue(SBConfig.Config.CRYSTALINE_FOREST_CHANCE_DEFUALT)
-                .setTooltip(new TranslatableText("Sets the chance for this biome to generate in the world (0 to disable, 1 to make it as common as normal biomes)"))
+        crystalCategory.addEntry(entryBuilder.startDoubleField(new TranslatableText("option.surrealbiomes.crystal.forest_chance"), SBConfig.config.crystal.forest_chance)
+                .setDefaultValue(SBConfig.Config.CrystalGroup.FOREST_CHANCE_DEFUALT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.biome_chance"))
                 .setMin(0.0).setMax(1.0).requireRestart().setSaveConsumer(newValue -> {
-                    SBConfig.config.crystaline_forest_chance = newValue;
+                    SBConfig.config.crystal.forest_chance = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
-        crystalCategory.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("option.surrealbiomes.crystal_grass_tick"), SBConfig.config.crystaline_grass_spread)
-                .setDefaultValue(SBConfig.Config.CRYSTALINE_GRASS_SPREAD_DEFAULT)
-                .setTooltip(new TranslatableText("Determines if crystal grass can spread in the world. (note, crystal grass requires shardlings to grow)"))
+        crystalCategory.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("option.surrealbiomes.crystal.crystal_grass_tick"), SBConfig.config.crystal.crystal_grass_tick)
+                .setDefaultValue(SBConfig.Config.CrystalGroup.CRYSTAL_GRASS_TICK_DEFAULT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal.crystal_grass_tick"))
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystaline_grass_spread = newValue;
+                    SBConfig.config.crystal.crystal_grass_tick = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
-        crystalCategory.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("option.surrealbiomes.crystaline_takeover"), SBConfig.config.crystaline_takeover)
-                .setDefaultValue(SBConfig.Config.CRYSTALINE_GRASS_SPREAD_DEFAULT)
-                .setTooltip(new TranslatableText("Gives crystal grass the ability to create it's own shardlings while it spreads. (will cause indefinite spreading)"))
+        crystalCategory.addEntry(entryBuilder.startBooleanToggle(new TranslatableText("option.surrealbiomes.crystal.takeover"), SBConfig.config.crystal.takeover)
+                .setDefaultValue(SBConfig.Config.CrystalGroup.TAKEOVER_DEFAULT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal.takeover"))
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystaline_takeover = newValue;
+                    SBConfig.config.crystal.takeover = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
-        crystalCategory.addEntry(entryBuilder.startDropdownMenu(new TranslatableText("option.surrealbiomes.crystal_grass_medium"),
-                DropdownMenuBuilder.TopCellElementBuilder.ofBlockObject(SBConfig.config.crystal_grass_spread_block),
+        crystalCategory.addEntry(entryBuilder.startDropdownMenu(new TranslatableText("option.surrealbiomes.crystal.crystal_grass_medium"),
+                DropdownMenuBuilder.TopCellElementBuilder.ofBlockObject(SBConfig.config.crystal.crystal_grass_spread_block),
                 DropdownMenuBuilder.CellCreatorBuilder.ofBlockObject())
-                .setDefaultValue(SBConfig.Config.CRYSTAL_GRASS_SPREAD_MEDIUM_DEFAULT)
+                .setDefaultValue(SBConfig.Config.CrystalGroup.CRYSTAL_GRASS_SPREAD_BLOCK_DEFAULT)
                 .setSelections(Registry.BLOCK.stream().collect(Collectors.toSet()))
                 .setSaveConsumer(block -> {
-                    SBConfig.config.crystal_grass_spread_medium = Registry.BLOCK.getId(block).toString();
-                    SBConfig.config.crystal_grass_spread_block = block;
+                    SBConfig.config.crystal.crystal_grass_spread_block = block;
                     SBConfig.saveConfig();
                 }).requireRestart()
                 .build());
 
-        ConfigCategory crystalStructCategory = builder.getOrCreateCategory(new TranslatableText("category.surrealbiomes.crystal_struct"));
-        crystalStructCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_width_min"),
-                SBConfig.config.crystal_radius_min, 1, 16)
-                .setDefaultValue(SBConfig.Config.CRYSTAL_RADIUS_MIN_DEFAULT)
-                .setTooltip(new TranslatableText("Minimum radius of the crystal structures in the crystaline biomes"))
+        ConfigCategory crystalFeaturesCategory = builder.getOrCreateCategory(new TranslatableText("category.surrealbiomes.crystal_features"));
+        crystalFeaturesCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_features.crystal_radius_min"),
+                SBConfig.config.crystalFeatures.crystal_radius_min, 1, 16)
+                .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_RADIUS_MIN_DEFAULT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_radius_min")).requireRestart()
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystal_radius_min = newValue;
+                    SBConfig.config.crystalFeatures.crystal_radius_min = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
-        crystalStructCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_width_max"),
-                SBConfig.config.crystal_radius_max, 1, 16)
-                .setDefaultValue(SBConfig.Config.CRYSTAL_RADIUS_MAX_DEFAULT)
-                .setTooltip(new TranslatableText("Maximum radius of the crystal structures in the crystaline biomes"))
+        crystalFeaturesCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_features.crystal_radius_max"),
+                SBConfig.config.crystalFeatures.crystal_radius_max, 1, 16)
+                .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_RADIUS_MAX_DEFAULT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_radius_max")).requireRestart()
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystal_radius_max = newValue;
+                    SBConfig.config.crystalFeatures.crystal_radius_max = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
-        crystalStructCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_height_min"),
-                SBConfig.config.crystal_height_min, 1, 128)
-                .setDefaultValue(SBConfig.Config.CRYSTAL_HEIGHT_MIN_DEFAULT)
-                .setTooltip(new TranslatableText("Minimum height of the crystal structures in the crystaline biomes"))
+        crystalFeaturesCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_features.crystal_height_min"),
+                SBConfig.config.crystalFeatures.crystal_height_min, 1, 128)
+                .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_HEIGHT_MIN_DEFAULT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_height_min")).requireRestart()
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystal_height_min = newValue;
+                    SBConfig.config.crystalFeatures.crystal_height_min = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
-        crystalStructCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_height_max"),
-                SBConfig.config.crystal_height_max, 1, 128)
-                .setDefaultValue(SBConfig.Config.CRYSTAL_HEIGHT_MAX_DEFAULT)
-                .setTooltip(new TranslatableText("Maximum height of the crystal structures in the crystaline biomes"))
+        crystalFeaturesCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_features.crystal_height_max"),
+                SBConfig.config.crystalFeatures.crystal_height_max, 1, 128)
+                .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_HEIGHT_MAX_DEFAULT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_height_max")).requireRestart()
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystal_height_max = newValue;
+                    SBConfig.config.crystalFeatures.crystal_height_max = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
-        crystalStructCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_spread"),
-                SBConfig.config.crystal_spread, 0, 8)
-                .setDefaultValue(SBConfig.Config.CRYSTAL_SPREAD_DEFAULT)
-                .setTooltip(new TranslatableText("Maximum distance of each crystal from the central crystal structure"))
+        crystalFeaturesCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_features.crystal_spread"),
+                SBConfig.config.crystalFeatures.crystal_spread, 0, 8)
+                .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_SPREAD_DEFAULT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_spread")).requireRestart()
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystal_spread = newValue;
+                    SBConfig.config.crystalFeatures.crystal_spread = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
-        crystalStructCategory.addEntry(entryBuilder.startFloatField(new TranslatableText("option.surrealbiomes.crystal_tilt"), SBConfig.config.crystal_tilt)
-                .setDefaultValue(SBConfig.Config.CRYSTAL_TILT_DEFAULT)
-                .setTooltip(new TranslatableText("Controls how far the crystals can lean from their origin"))
-                .setMin(0.0F).setMax(4.0F).setSaveConsumer(newValue -> {
-                    SBConfig.config.crystal_tilt = newValue;
+        crystalFeaturesCategory.addEntry(entryBuilder.startFloatField(new TranslatableText("option.surrealbiomes.crystal_features.crystal_tilt"),
+                SBConfig.config.crystalFeatures.crystal_tilt)
+                .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_TILT_DEFAULT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_tilt"))
+                .setMin(0.0F).setMax(4.0F).requireRestart().setSaveConsumer(newValue -> {
+                    SBConfig.config.crystalFeatures.crystal_tilt = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
+
+        crystalFeaturesCategory.addEntry(entryBuilder.startTextDescription(new TranslatableText("desc.surrealbiomes.crystal_features.composition_list")).build());
+
+        ConfigCategory rainbowCategory = builder.getOrCreateCategory(new TranslatableText("category.surrealbiomes.rainbow"));
+        rainbowCategory.addEntry(entryBuilder.startDoubleField(new TranslatableText("option.surrealbiomes.rainbow.desert_chance"), SBConfig.config.rainbow.chance)
+                .setDefaultValue(SBConfig.Config.RainbowGroup.CHANCE_DEFAULT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.biome_chance"))
+                .setMax(0.0).setMax(1.0).requireRestart().setSaveConsumer(newValue -> {
+                    SBConfig.config.rainbow.chance = newValue;
+                    SBConfig.saveConfig();
+                })
+                .build());
+
+        rainbowCategory.addEntry(entryBuilder.startDoubleField(new TranslatableText("option.surrealbiomes.rainbow.frequency"), SBConfig.config.rainbow.frequency)
+                .setDefaultValue(SBConfig.Config.RainbowGroup.FREQUENCY_DEFAULT)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.rainbow_desert.frequency"))
+                .setMax(0.01).setMax(1.0).setSaveConsumer(newValue -> {
+                    SBConfig.config.rainbow.frequency = newValue;
+                    SBConfig.saveConfig();
+                })
+                .build());
+
+        rainbowCategory.addEntry(entryBuilder.startTextDescription(new TranslatableText("desc.surrealbiomes.rainbow.color_blocks")).build());
+
+        ConfigCategory rainbowFeaturesCategory = builder.getOrCreateCategory(new TranslatableText("category.surrealbiomes.rainbow_features"));
+        rainbowFeaturesCategory.addEntry(entryBuilder.startIntSlider(
+                new TranslatableText("option.surrealbiomes.rainbow_features.rainbow_spike_radius_min"),
+                SBConfig.config.rainbowFeatures.rainbow_spike_radius_min, 4, 16)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.rainbow_features.rainbow_spike_radius_min"))
+                .requireRestart().setSaveConsumer(newValue -> {
+                    SBConfig.config.rainbowFeatures.rainbow_spike_radius_min = newValue;
+                    SBConfig.saveConfig();
+                })
+                .build());
+
+        rainbowFeaturesCategory.addEntry(entryBuilder.startIntSlider(
+                new TranslatableText("option.surrealbiomes.rainbow_features.rainbow_spike_radius_max"),
+                SBConfig.config.rainbowFeatures.rainbow_spike_radius_max, 4, 16)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.rainbow_features.rainbow_spike_radius_max"))
+                .requireRestart().setSaveConsumer(newValue -> {
+                    SBConfig.config.rainbowFeatures.rainbow_spike_radius_max = newValue;
+                    SBConfig.saveConfig();
+                })
+                .build());
+
+        rainbowFeaturesCategory.addEntry(entryBuilder.startIntSlider(
+                new TranslatableText("option.surrealbiomes.rainbow_features.rainbow_spike_height_max"),
+                SBConfig.config.rainbowFeatures.rainbow_spike_radius_min, 8, 128)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.rainbow_features.rainbow_spike_height_max"))
+                .requireRestart().setSaveConsumer(newValue -> {
+                    SBConfig.config.rainbowFeatures.rainbow_spike_height_max = newValue;
+                    SBConfig.saveConfig();
+                })
+                .build());
+
+        rainbowFeaturesCategory.addEntry(entryBuilder.startFloatField(
+                new TranslatableText("option.surrealbiomes.rainbow_features.rainbow_spike_falloff"), SBConfig.config.rainbowFeatures.rainbow_spike_falloff)
+                .setDefaultValue(SBConfig.config.rainbowFeatures.rainbow_spike_falloff)
+                .setTooltip(new TranslatableText("tooltip.surrealbiomes.rainbow_features.rainbow_spike_falloff"))
+                .setMin(0.01F).setMax(8.F).requireRestart().setSaveConsumer(newValue -> {
+                    SBConfig.config.rainbowFeatures.rainbow_spike_falloff = newValue;
+                    SBConfig.saveConfig();
+                })
+                .build());
+
+        rainbowFeaturesCategory.addEntry(entryBuilder.startTextDescription(new TranslatableText("desc.surrealbiomes.rainbow_features.spike_blocks")).build());
 
         return builder.build();
     }

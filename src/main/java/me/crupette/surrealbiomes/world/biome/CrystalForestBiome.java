@@ -1,7 +1,9 @@
 package me.crupette.surrealbiomes.world.biome;
 
 import com.google.common.collect.ImmutableSet;
+import me.crupette.surrealbiomes.SBConfig;
 import me.crupette.surrealbiomes.block.SurrealBlocks;
+import me.crupette.surrealbiomes.world.feature.CrystalFeatureConfig;
 import me.crupette.surrealbiomes.world.feature.SurrealFeatures;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
@@ -19,8 +21,8 @@ import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
-public class CrystalineForestBiome extends Biome {
-    protected CrystalineForestBiome() {
+public class CrystalForestBiome extends Biome {
+    protected CrystalForestBiome() {
         super(new Biome.Settings().configureSurfaceBuilder(SurfaceBuilder.DEFAULT, new TernarySurfaceConfig(
                 SurrealBlocks.CRYSTAL_GRASS.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.GRAVEL.getDefaultState()))
                 .precipitation(Precipitation.RAIN).category(Category.FOREST).depth(0.1F).scale(0.2F).temperature(0.9F).downfall(1.F).effects(
@@ -30,7 +32,9 @@ public class CrystalineForestBiome extends Biome {
 
         DefaultBiomeFeatures.method_28440(this);
         this.addStructureFeature(DefaultBiomeFeatures.field_24711);
-        this.addFeature(GenerationStep.Feature.RAW_GENERATION, SurrealFeatures.CRYSTAL.configure(FeatureConfig.DEFAULT).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(2))));
+        this.addFeature(GenerationStep.Feature.RAW_GENERATION, SurrealFeatures.CRYSTAL.configure(
+                new CrystalFeatureConfig.Builder(SBConfig.config.crystalFeatures).build())
+                .createDecoratedFeature(Decorator.COUNT_HEIGHTMAP.configure(new CountDecoratorConfig(2))));
 
         DefaultBiomeFeatures.addLandCarvers(this);
         DefaultBiomeFeatures.addDefaultLakes(this);
