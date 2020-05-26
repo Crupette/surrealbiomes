@@ -44,8 +44,8 @@
     "desc.surrealbiomes.rainbow.color_blocks": "To change which blocks generate at the surface of rainbow deserts, change the values in the 'color_blocks' field using the config file at config/surrealbiomes.json",
     "desc.surrealbiomes.rainbow_features.spike_blocks": "To change which blocks generate in the spike structure, change the values in the 'spike_blocks' field using the config file at config/surrealbiomes.json",
 
-    "biome.surrealbiomes.crystaline_plains": "Crystaline Plains",
-    "biome.surrealbiomes.crystaline_forest": "Crystaline Forest",
+    "biome.surrealbiomes.crystal_plains": "Crystal Plains",
+    "biome.surrealbiomes.crystal_forest": "Crystal Forest",
     "biome.surrealbiomes.rainbow_desert": "Rainbow Desert",
     "biome.surrealbiomes.rainbow_beach": "Rainbow Beach",
     "biome.surrealbiomes.rainbow_desert_hills": "Rainbow Desert Hills",
