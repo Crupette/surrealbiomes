@@ -34,7 +34,7 @@ public class CrystalPlainsBiome extends Biome {
         DefaultBiomeFeatures.method_28440(this);             //Default biome features
         this.addStructureFeature(DefaultBiomeFeatures.field_24711); //Stronghold
         this.addFeature(GenerationStep.Feature.RAW_GENERATION, SurrealFeatures.CRYSTAL.configure(
-                new CrystalFeatureConfig.Builder(SBConfig.config.crystalStructure).build())
+                new CrystalFeatureConfig.Builder(SBConfig.config.crystalFeatures).build())
                 .createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(0, 0.1F, 1))));
 
         DefaultBiomeFeatures.addLandCarvers(this);

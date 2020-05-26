@@ -20,6 +20,7 @@ import io.github.fablabsmc.fablabs.api.fiber.v1.serialization.JsonTypeSerializer
 import io.github.fablabsmc.fablabs.api.fiber.v1.tree.ConfigTree;
 import io.github.fablabsmc.fablabs.impl.fiber.serialization.FiberSerialization;
 import me.crupette.surrealbiomes.SBBase;
+import me.crupette.surrealbiomes.block.SurrealBlocks;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -39,11 +40,18 @@ public class SBConfig {
     private static AnnotatedSettings annotatedSettings = null;
     private static JanksonValueSerializer SERIALIZER = new JanksonValueSerializer(false);
 
-    public static Config config;
+    public static Config config = new Config();
 
     public static final StringConfigType<Block> BLOCK_ID = ConfigTypes.STRING.derive(
-            Block.class, s -> Registry.BLOCK.get(new Identifier(
-                    s.substring(0, s.indexOf(':')), s.substring(s.indexOf(':') + 1))),
+            Block.class, s -> {
+                Block ret = Registry.BLOCK.get(new Identifier(
+                        s.substring(0, s.indexOf(':')), s.substring(s.indexOf(':') + 1)));
+                if(ret.is(Blocks.AIR)){
+                    SBBase.log(Level.ERROR, "Passed invalid block id in config: '" + s + "'. Defaulting to minecraft:grass_block");
+                    return Blocks.GRASS_BLOCK;
+                }
+                return ret;
+            },
             block -> Registry.BLOCK.getId(block).toString());
 
     public static void init(){
@@ -51,11 +59,39 @@ public class SBConfig {
                 .registerTypeMapping(Block.class, BLOCK_ID)
                 .build();
 
-        config = new Config();
+        loadBlockDefaults();
         configTree = ConfigTree.builder().applyFromPojo(config, annotatedSettings).build();
 
         loadConfig();
         saveConfig();
+    }
+
+    private static void loadBlockDefaults(){
+        config.crystalFeatures.crystal_growth_blocks = new ArrayList<>(Arrays.asList(
+                Blocks.RED_STAINED_GLASS, Blocks.ORANGE_STAINED_GLASS,
+                Blocks.YELLOW_STAINED_GLASS, Blocks.GREEN_STAINED_GLASS,
+                Blocks.BLUE_STAINED_GLASS, Blocks.PURPLE_STAINED_GLASS,
+                Blocks.PINK_STAINED_GLASS, Blocks.CYAN_STAINED_GLASS,
+                Blocks.WHITE_STAINED_GLASS, Blocks.WHITE_STAINED_GLASS
+        ));
+
+        config.rainbow.color_blocks = new ArrayList<>(Arrays.asList(
+                SurrealBlocks.RED_SAND, SurrealBlocks.ORANGE_SAND,
+                SurrealBlocks.YELLOW_SAND, SurrealBlocks.GREEN_SAND,
+                SurrealBlocks.BLUE_SAND, SurrealBlocks.PURPLE_SAND
+        ));
+
+        config.rainbowFeatures.rainbow_spike_root_blocks = new ArrayList<>(Arrays.asList(
+                Blocks.SANDSTONE, Blocks.STONE,
+                Blocks.ANDESITE, Blocks.DIORITE,
+                Blocks.GRANITE
+        ));
+
+        config.rainbowFeatures.rainbow_spike_composition_blocks = new ArrayList<>(Arrays.asList(
+                Blocks.TERRACOTTA, Blocks.RED_TERRACOTTA, Blocks.ORANGE_TERRACOTTA,
+                Blocks.YELLOW_TERRACOTTA, Blocks.GREEN_TERRACOTTA, Blocks.BLUE_TERRACOTTA,
+                Blocks.PURPLE_TERRACOTTA, Blocks.PINK_TERRACOTTA, Blocks.CYAN_TERRACOTTA
+        ));
     }
 
     private static void loadConfig(){
@@ -91,7 +127,7 @@ public class SBConfig {
         public CrystalGroup crystal = new CrystalGroup();
 
         @Setting.Group(name = "crystal_structures_settings")
-        public CrystalStructureGroup crystalStructure = new CrystalStructureGroup();
+        public CrystalStructureGroup crystalFeatures = new CrystalStructureGroup();
 
         @Setting.Group(name = "rainbow_desert_biome_settings")
         public RainbowGroup rainbow = new RainbowGroup();
@@ -159,13 +195,7 @@ public class SBConfig {
             @Constrain.Range(min = 1, max = 16, step = 1)
             public int crystal_density = CRYSTAL_DENSITY_DEFAULT;
 
-            public List<Block> crystal_growth_blocks = new ArrayList<>(Arrays.asList(
-                    Blocks.RED_STAINED_GLASS, Blocks.ORANGE_STAINED_GLASS,
-                    Blocks.YELLOW_STAINED_GLASS, Blocks.GREEN_STAINED_GLASS,
-                    Blocks.BLUE_STAINED_GLASS, Blocks.PURPLE_STAINED_GLASS,
-                    Blocks.PINK_STAINED_GLASS, Blocks.CYAN_STAINED_GLASS,
-                    Blocks.WHITE_STAINED_GLASS, Blocks.WHITE_STAINED_GLASS
-            ));
+            public List<Block> crystal_growth_blocks;
         }
 
         public class RainbowGroup {
@@ -178,6 +208,8 @@ public class SBConfig {
             public static final double FREQUENCY_DEFAULT = 0.01D;
             @Constrain.Range(min = 0.01D, max = 1.D, step = 0.01D)
             public double frequency = FREQUENCY_DEFAULT;
+
+            public List<Block> color_blocks;
         }
 
         public class RainbowFeaturesGroup {
@@ -201,17 +233,8 @@ public class SBConfig {
             @Constrain.Range(min = 1, max = 16)
             public float rainbow_spike_falloff = RAINBOW_SPIKE_FALLOFF_DEFAULT;
 
-            public List<Block> rainbow_spike_root_blocks = new ArrayList<>(Arrays.asList(
-                    Blocks.SANDSTONE, Blocks.STONE,
-                    Blocks.ANDESITE, Blocks.DIORITE,
-                    Blocks.GRANITE
-            ));
-
-            public List<Block> rainbow_spike_composition_blocks = new ArrayList<>(Arrays.asList(
-                    Blocks.TERRACOTTA, Blocks.RED_TERRACOTTA, Blocks.ORANGE_TERRACOTTA,
-                    Blocks.YELLOW_TERRACOTTA, Blocks.GREEN_TERRACOTTA, Blocks.BLUE_TERRACOTTA,
-                    Blocks.PURPLE_TERRACOTTA, Blocks.PINK_TERRACOTTA, Blocks.CYAN_TERRACOTTA
-            ));
+            public List<Block> rainbow_spike_root_blocks;
+            public List<Block> rainbow_spike_composition_blocks;
         };
     }
 }

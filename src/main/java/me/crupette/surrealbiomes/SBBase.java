@@ -16,9 +16,9 @@ public class SBBase implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        SurrealBlocks.registerBlocks();
         SBConfig.init();
 
-        SurrealBlocks.registerBlocks();
         SurrealBiomes.initialize();
     }
     public static void log(Level level, String message){

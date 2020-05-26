@@ -44,33 +44,33 @@ public class SurrealBlocks {
     public static final Block ORANGE_SAND = new ColoredSandBlock(0xDDAA80, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.ORANGE).strength(0.5F).sounds(BlockSoundGroup.SAND));
     public static final Block WHITE_SAND = new ColoredSandBlock(0xEEEEEE, FabricBlockSettings.of(Material.AGGREGATE, MaterialColor.WHITE).strength(0.5F).sounds(BlockSoundGroup.SAND));
 
-    private static void registerBlock(Identifier identifier, Block block, ItemGroup group){
-        Registry.register(Registry.BLOCK, identifier, block);
-        Registry.register(Registry.ITEM, identifier, new BlockItem(block, new Item.Settings().group(group)));
+    private static void registerBlock(String name, Block block, ItemGroup group){
+        Registry.register(Registry.BLOCK, new Identifier(SBBase.MOD_ID, name), block);
+        Registry.register(Registry.ITEM, new Identifier(SBBase.MOD_ID, name), new BlockItem(block, new Item.Settings().group(group)));
     }
 
     public static void registerBlocks(){
-        registerBlock(new Identifier(SBBase.MOD_ID, "crystal_grass"), CRYSTAL_GRASS, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "redder_crystal_shardling"), REDDER_CRYSTAL_SHARDLING, ItemGroup.DECORATIONS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "bluer_crystal_shardling"), BLUER_CRYSTAL_SHARDLING, ItemGroup.DECORATIONS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "greener_crystal_shardling"), GREENER_CRYSTAL_SHARDLING, ItemGroup.DECORATIONS);
+        registerBlock("crystal_grass", CRYSTAL_GRASS, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("redder_crystal_shardling", REDDER_CRYSTAL_SHARDLING, ItemGroup.DECORATIONS);
+        registerBlock("bluer_crystal_shardling", BLUER_CRYSTAL_SHARDLING, ItemGroup.DECORATIONS);
+        registerBlock("greener_crystal_shardling", GREENER_CRYSTAL_SHARDLING, ItemGroup.DECORATIONS);
 
-        registerBlock(new Identifier(SBBase.MOD_ID, "black_sand"), BLACK_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "red_sand"), RED_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "green_sand"), GREEN_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "brown_sand"), BROWN_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "blue_sand"), BLUE_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "purple_sand"), PURPLE_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "cyan_sand"), CYAN_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "light_gray_sand"), LIGHT_GRAY_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "gray_sand"), GRAY_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "pink_sand"), PINK_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "lime_sand"), LIME_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "yellow_sand"), YELLOW_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "light_blue_sand"), LIGHT_BLUE_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "magenta_sand"), MAGENTA_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "orange_sand"), ORANGE_SAND, ItemGroup.BUILDING_BLOCKS);
-        registerBlock(new Identifier(SBBase.MOD_ID, "white_sand"), WHITE_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("black_sand", BLACK_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("red_sand", RED_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("green_sand", GREEN_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("brown_sand", BROWN_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("blue_sand", BLUE_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("purple_sand", PURPLE_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("cyan_sand", CYAN_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("light_gray_sand", LIGHT_GRAY_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("gray_sand", GRAY_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("pink_sand", PINK_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("lime_sand", LIME_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("yellow_sand", YELLOW_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("light_blue_sand", LIGHT_BLUE_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("magenta_sand", MAGENTA_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("orange_sand", ORANGE_SAND, ItemGroup.BUILDING_BLOCKS);
+        registerBlock("white_sand", WHITE_SAND, ItemGroup.BUILDING_BLOCKS);
 
     }
   

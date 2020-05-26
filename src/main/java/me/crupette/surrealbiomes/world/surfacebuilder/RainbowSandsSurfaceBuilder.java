@@ -43,9 +43,9 @@ public class RainbowSandsSurfaceBuilder extends SurfaceBuilder<TernarySurfaceCon
         int color = (int)(this.colorNoise.sample(
                 (double)x * SBConfig.config.rainbow.frequency,
                 (double)z * SBConfig.config.rainbow.frequency * 2,
-                false) * COLOR_BLOCKS.length);
+                false) * SBConfig.config.rainbow.color_blocks.size());
 
-        BlockState topBlock = COLOR_BLOCKS[Math.abs(color)];
+        BlockState topBlock = SBConfig.config.rainbow.color_blocks.get(Math.abs(color)).getDefaultState();
         BlockState topState = topBlock;
         BlockState bottomState = topBlock;
         BlockPos.Mutable blockPos = new BlockPos.Mutable();

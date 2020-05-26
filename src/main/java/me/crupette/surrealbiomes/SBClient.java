@@ -80,61 +80,61 @@ public class SBClient implements ClientModInitializer {
 
         ConfigCategory crystalFeaturesCategory = builder.getOrCreateCategory(new TranslatableText("category.surrealbiomes.crystal_features"));
         crystalFeaturesCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_features.crystal_radius_min"),
-                SBConfig.config.crystalStructure.crystal_radius_min, 1, 16)
+                SBConfig.config.crystalFeatures.crystal_radius_min, 1, 16)
                 .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_RADIUS_MIN_DEFAULT)
                 .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_radius_min")).requireRestart()
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystalStructure.crystal_radius_min = newValue;
+                    SBConfig.config.crystalFeatures.crystal_radius_min = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
         crystalFeaturesCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_features.crystal_radius_max"),
-                SBConfig.config.crystalStructure.crystal_radius_max, 1, 16)
+                SBConfig.config.crystalFeatures.crystal_radius_max, 1, 16)
                 .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_RADIUS_MAX_DEFAULT)
                 .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_radius_max")).requireRestart()
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystalStructure.crystal_radius_max = newValue;
+                    SBConfig.config.crystalFeatures.crystal_radius_max = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
         crystalFeaturesCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_features.crystal_height_min"),
-                SBConfig.config.crystalStructure.crystal_height_min, 1, 128)
+                SBConfig.config.crystalFeatures.crystal_height_min, 1, 128)
                 .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_HEIGHT_MIN_DEFAULT)
                 .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_height_min")).requireRestart()
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystalStructure.crystal_height_min = newValue;
+                    SBConfig.config.crystalFeatures.crystal_height_min = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
         crystalFeaturesCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_features.crystal_height_max"),
-                SBConfig.config.crystalStructure.crystal_height_max, 1, 128)
+                SBConfig.config.crystalFeatures.crystal_height_max, 1, 128)
                 .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_HEIGHT_MAX_DEFAULT)
                 .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_height_max")).requireRestart()
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystalStructure.crystal_height_max = newValue;
+                    SBConfig.config.crystalFeatures.crystal_height_max = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
         crystalFeaturesCategory.addEntry(entryBuilder.startIntSlider(new TranslatableText("option.surrealbiomes.crystal_features.crystal_spread"),
-                SBConfig.config.crystalStructure.crystal_spread, 0, 8)
+                SBConfig.config.crystalFeatures.crystal_spread, 0, 8)
                 .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_SPREAD_DEFAULT)
                 .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_spread")).requireRestart()
                 .setSaveConsumer(newValue -> {
-                    SBConfig.config.crystalStructure.crystal_spread = newValue;
+                    SBConfig.config.crystalFeatures.crystal_spread = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
 
         crystalFeaturesCategory.addEntry(entryBuilder.startFloatField(new TranslatableText("option.surrealbiomes.crystal_features.crystal_tilt"),
-                SBConfig.config.crystalStructure.crystal_tilt)
+                SBConfig.config.crystalFeatures.crystal_tilt)
                 .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_TILT_DEFAULT)
                 .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_tilt"))
                 .setMin(0.0F).setMax(4.0F).requireRestart().setSaveConsumer(newValue -> {
-                    SBConfig.config.crystalStructure.crystal_tilt = newValue;
+                    SBConfig.config.crystalFeatures.crystal_tilt = newValue;
                     SBConfig.saveConfig();
                 })
                 .build());
@@ -159,6 +159,8 @@ public class SBClient implements ClientModInitializer {
                     SBConfig.saveConfig();
                 })
                 .build());
+
+        rainbowCategory.addEntry(entryBuilder.startTextDescription(new TranslatableText("desc.surrealbiomes.rainbow.color_blocks")).build());
 
         ConfigCategory rainbowFeaturesCategory = builder.getOrCreateCategory(new TranslatableText("category.surrealbiomes.rainbow_features"));
         rainbowFeaturesCategory.addEntry(entryBuilder.startIntSlider(
