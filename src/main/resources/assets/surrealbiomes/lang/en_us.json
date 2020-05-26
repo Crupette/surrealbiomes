@@ -35,14 +35,14 @@
     "tooltip.surrealbiomes.crystal_features.crystal_spread": "How spread apart each individual crystal generates from the origin",
     "tooltip.surrealbiomes.crystal_features.crystal_tilt": "Multiplier for crystal rotation magnitude",
     "tooltip.surrealbiomes.rainbow.frequency": "The multiplier how dense the rainbow effect generates",
-    "tooltip.surrealbiomes.rainbow_features.rainbow_spike_radius_min": "The minimum radius of the rainbow spike structures",
+    "tooltip.surrealbidddddomes.rainbow_features.rainbow_spike_radius_min": "The minimum radius of the rainbow spike structures",
     "tooltip.surrealbiomes.rainbow_features.rainbow_spike_radius_max": "The maximum radius of the rainbow spike structures",
     "tooltip.surrealbiomes.rainbow_features.rainbow_spike_height_max": "The maximum height of the rainbow spike structures",
     "tooltip.surrealbiomes.rainbow_features.rainbow_spike_falloff": "How dramatically the height of the rainbow spikes decrease as their distance from the origin increases",
 
-    "desc.surrealbiomes.crystal_features.composition_list": "To change which blocks generate in the crystal structure, change the values in the 'composition_list' and 'root_blocks' fields using the config file at config/surrealbiomes.json",
+    "desc.surrealbiomes.crystal_features.composition_list": "To change which blocks generate in the crystal structure, change the values in the 'crystal_growth_blocks' field using the config file at config/surrealbiomes.json",
     "desc.surrealbiomes.rainbow.color_blocks": "To change which blocks generate at the surface of rainbow deserts, change the values in the 'color_blocks' field using the config file at config/surrealbiomes.json",
-    "desc.surrealbiomes.rainbow_features.spike_blocks": "To change which blocks generate in the spike structure, change the values in the 'spike_blocks' field using the config file at config/surrealbiomes.json",
+    "desc.surrealbiomes.rainbow_features.spike_blocks": "To change which blocks generate in the spike structure, change the values in the 'root_blocks' and 'composition_blocks' fields using the config file at config/surrealbiomes.json",
 
     "biome.surrealbiomes.crystal_plains": "Crystal Plains",
     "biome.surrealbiomes.crystal_forest": "Crystal Forest",

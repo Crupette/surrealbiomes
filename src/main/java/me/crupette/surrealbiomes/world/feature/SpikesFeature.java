@@ -21,8 +21,14 @@ public class SpikesFeature extends Feature<SpikesFeatureConfig> {
         BlockState color = config.compositionBlocks.get(random.nextInt(config.compositionBlocks.size()));
         for(int x = -radius; x <= radius; x++)
             for(int z = -radius; z <= radius; z++){
-                if(Math.abs(x) + Math.abs(z) > radius) continue;
-                int height = random.nextInt((int) (config.maxHeight - (Math.abs(x + z) * (1.f / config.falloff))));
+                int dist = Math.abs(x) + Math.abs(z);
+                if(dist > radius) continue;
+                double heightBounds = (config.maxHeight * 1.5) -((config.maxHeight >> 1) *
+                        (Math.pow(2.71828, Math.pow(z, 2) / Math.pow(2 * config.falloff, 2)) *
+                                Math.pow(2.71828, Math.pow(x, 2) / Math.pow(2 * config.falloff, 2))));
+
+                if((int)heightBounds <= 0) continue;
+                int height = random.nextInt((int) heightBounds);
 
                 BlockPos cpos = pos.add(x, 0, z);
                 do {
