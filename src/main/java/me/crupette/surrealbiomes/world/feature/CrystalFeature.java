@@ -1,78 +1,40 @@
 package me.crupette.surrealbiomes.world.feature;
 
 import com.mojang.datafixers.Dynamic;
-import me.crupette.surrealbiomes.SBBase;
-import me.crupette.surrealbiomes.SBConfig;
 import me.crupette.surrealbiomes.block.SurrealBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.chunk.ChunkGeneratorConfig;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-import org.apache.logging.log4j.Level;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 
-public class CrystalFeature extends Feature<DefaultFeatureConfig> {
+public class CrystalFeature extends Feature<CrystalFeatureConfig> {
 
-    private static final List<BlockState> COLORS = new ArrayList<>();
-
-    public CrystalFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
-        super(configDeserializer);
-
-        if(COLORS.size() != 0) return;
-        for(String configstr : SBConfig.config.crystal_growth_blocks){
-            Identifier id = new Identifier(configstr.substring(0, configstr.indexOf(':')), configstr.substring(configstr.indexOf(':') + 1));
-            Block retrieved = Registry.BLOCK.get(id);
-            if(retrieved == Blocks.AIR){
-                SBBase.log(Level.ERROR, "For crystalGrowthBlocks, passed invalid block id: \"" + configstr + "\". Using minecraft:glass");
-                retrieved = Blocks.GLASS;
-            }
-            COLORS.add(retrieved.getDefaultState());
-        }
-
-        int swpbuf;
-        if(SBConfig.config.crystal_height_min > SBConfig.config.crystal_height_max){
-            swpbuf = SBConfig.config.crystal_height_min;
-            SBConfig.config.crystal_height_min = SBConfig.config.crystal_height_max;
-            SBConfig.config.crystal_height_max = swpbuf;
-            SBBase.log(Level.WARN, "crystal_feature_height_min greater than maximum, switching");
-        }
-        if(SBConfig.config.crystal_radius_min > SBConfig.config.crystal_radius_max){
-            swpbuf = SBConfig.config.crystal_radius_min;
-            SBConfig.config.crystal_radius_min = SBConfig.config.crystal_radius_max;
-            SBConfig.config.crystal_radius_max = swpbuf;
-            SBBase.log(Level.WARN, "crystal_feature_radius_min greater than maximum, switching");
-        }
+    public CrystalFeature(Function<Dynamic<?>, ? extends CrystalFeatureConfig> configFactory) {
+        super(configFactory);
     }
 
-    private void generateCrystal(IWorld world, Random random, BlockPos center){
-        int height = random.nextInt(SBConfig.config.crystal_height_max - SBConfig.config.crystal_height_min) + SBConfig.config.crystal_height_min;
-        int radius = random.nextInt(SBConfig.config.crystal_radius_max - SBConfig.config.crystal_radius_min) + SBConfig.config.crystal_radius_min;
-        float slant = random.nextFloat() * SBConfig.config.crystal_tilt;
+    private void generateCrystal(IWorld world, Random random, BlockPos center, CrystalFeatureConfig config){
+        int height = random.nextInt(config.maxHeight - config.minHeight) + config.minHeight;
+        int radius = random.nextInt(config.maxRadius - config.minRadius) + config.minRadius;
+        float slant = random.nextFloat() * config.tilt;
         float dir = random.nextFloat() * 360.f;
-        int spread = SBConfig.config.crystal_spread;
-        BlockPos pos = new BlockPos(center.getX() + (random.nextInt(spread * 2) - spread),
+        int spread = config.spread;
+        BlockPos pos = new BlockPos(center.getX() + (random.nextInt(spread) - spread),
                                     center.getY(),
-                                    center.getZ() + (random.nextInt(spread * 2) - spread));
+                                    center.getZ() + (random.nextInt(spread) - spread));
 
         while (world.isAir(pos) && pos.getY() > 2) pos = pos.down();
         if(world.getBlockState(pos).getBlock() != SurrealBlocks.CRYSTAL_GRASS) return;
         pos = pos.up();
 
         double addx = 0, addz = 0;
-        int color = random.nextInt(COLORS.size());
-        BlockState inside = COLORS.get(color);
-        BlockState outside = COLORS.get(color);
+        int color = random.nextInt(config.composition.size());
+        BlockState block = config.composition.get(color);
         for(int y = 0; y <= height; y++){
             if(y >= height - 4) radius--;
             for(int x = -radius; x <= radius; x++) {
@@ -80,9 +42,9 @@ public class CrystalFeature extends Feature<DefaultFeatureConfig> {
                     int distcheck = Math.abs(x) + Math.abs(z);
                     if(distcheck > radius) continue;
                     if(distcheck == radius || y == height){
-                        if(world.isAir(pos.add(x, 0, z))) world.setBlockState(pos.add(x, 0, z), outside, 2);
+                        if(world.isAir(pos.add(x, 0, z))) world.setBlockState(pos.add(x, 0, z), block, 2);
                     }else {
-                        world.setBlockState(pos.add(x, 0, z), inside, 2);
+                        world.setBlockState(pos.add(x, 0, z), block, 2);
                     }
                 }
             }
@@ -96,13 +58,12 @@ public class CrystalFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        int count = random.nextInt(4) + 3;
+    public boolean generate(IWorld world, ChunkGenerator<? extends ChunkGeneratorConfig> generator, Random random, BlockPos pos, CrystalFeatureConfig config) {
+        int count = random.nextInt(config.density - 4) + config.density;
         while (count > 0){
-            generateCrystal(world, random, pos);
+            generateCrystal(world, random, pos, config);
             count--;
         }
         return true;
     }
-
 }

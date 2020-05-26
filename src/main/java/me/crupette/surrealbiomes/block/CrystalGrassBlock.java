@@ -1,6 +1,5 @@
 package me.crupette.surrealbiomes.block;
 
-import io.github.fablabsmc.fablabs.api.fiber.v1.FiberId;
 import me.crupette.surrealbiomes.SBBase;
 import me.crupette.surrealbiomes.SBConfig;
 import net.minecraft.block.Block;
@@ -8,9 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.WorldView;
 import org.apache.logging.log4j.Level;
 
@@ -22,9 +19,9 @@ public class CrystalGrassBlock extends Block {
     public CrystalGrassBlock(Settings settings) {
         super(settings);
 
-        spreadMedium = SBConfig.config.crystal_grass_spread_block;
-        if(spreadMedium == Blocks.AIR){
-            SBBase.log(Level.ERROR, "Value for crystalSpreadMedium given invalid block id: \"" + SBConfig.config.crystal_grass_spread_medium + "\". Using minecraft:grass_block");
+        spreadMedium = SBConfig.config.crystal.crystal_grass_spread_block;
+        if(spreadMedium == (Blocks.AIR)){
+            SBBase.log(Level.ERROR, "Value for crystalSpreadMedium given invalid block id: Using minecraft:grass_block");
             spreadMedium = Blocks.GRASS_BLOCK;
         }
     }
@@ -39,16 +36,16 @@ public class CrystalGrassBlock extends Block {
         for(int y = -3; y <= 3; y++) for(int z = -3; z <= 3; z++) for(int x = -3; x <= 3; x++){
             if(Math.abs(x) + Math.abs(z) > 4) continue;
             BlockPos chkpos = pos.add(x, y + 1, z);
-            if(worldView.getBlockState(chkpos).getBlock() == SurrealBlocks.REDDER_CRYSTAL_SHARDLING) return true;
-            if(worldView.getBlockState(chkpos).getBlock() == SurrealBlocks.GREENER_CRYSTAL_SHARDLING) return true;
-            if(worldView.getBlockState(chkpos).getBlock() == SurrealBlocks.BLUER_CRYSTAL_SHARDLING) return true;
+            if(worldView.getBlockState(chkpos).getBlock() == (SurrealBlocks.REDDER_CRYSTAL_SHARDLING)) return true;
+            if(worldView.getBlockState(chkpos).getBlock() == (SurrealBlocks.GREENER_CRYSTAL_SHARDLING)) return true;
+            if(worldView.getBlockState(chkpos).getBlock() == (SurrealBlocks.BLUER_CRYSTAL_SHARDLING)) return true;
         }
         return false;
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if(!SBConfig.config.crystaline_grass_spread) return;
+        if(!SBConfig.config.crystal.crystal_grass_tick) return;
         if(!canSpread(state, world, pos)){
             world.setBlockState(pos, Blocks.GRASS_BLOCK.getDefaultState());
             return;
@@ -58,10 +55,10 @@ public class CrystalGrassBlock extends Block {
                     random.nextInt(5) - 3,
                     random.nextInt(3) - 1);
 
-            if (world.getBlockState(spreadpos).getBlock() == spreadMedium && canSpread(state, world, spreadpos)) {
+            if (world.getBlockState(spreadpos).getBlock() == (spreadMedium) && canSpread(state, world, spreadpos)) {
                 world.setBlockState(spreadpos, SurrealBlocks.CRYSTAL_GRASS.getDefaultState());
                 int growchance = random.nextInt(4);
-                if(growchance == 0 && SBConfig.config.crystaline_takeover){
+                if(growchance == 0 && SBConfig.config.crystal.takeover){
                     int color = random.nextInt(3);
                     if(color == 0) world.setBlockState(spreadpos.up(), SurrealBlocks.REDDER_CRYSTAL_SHARDLING.getDefaultState());
                     if(color == 1) world.setBlockState(spreadpos.up(), SurrealBlocks.GREENER_CRYSTAL_SHARDLING.getDefaultState());

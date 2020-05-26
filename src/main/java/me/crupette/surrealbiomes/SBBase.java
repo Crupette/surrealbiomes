@@ -12,12 +12,13 @@ public class SBBase implements ModInitializer {
 
     public static Logger LOGGER = LogManager.getLogger();
     public static final String MOD_NAME = "Surreal Biomes";
+    public static final String MOD_ID = "surrealbiomes";
 
     @Override
     public void onInitialize() {
+        SurrealBlocks.registerBlocks();
         SBConfig.init();
 
-        SurrealBlocks.registerBlocks();
         SurrealBiomes.initialize();
     }
     public static void log(Level level, String message){
