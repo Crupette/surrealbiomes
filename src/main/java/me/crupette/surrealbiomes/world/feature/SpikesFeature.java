@@ -28,7 +28,7 @@ public class SpikesFeature extends Feature<SpikesFeatureConfig> {
                         (Math.pow(2.71828, Math.pow(z, 2) / Math.pow(2 * config.falloff, 2)) *
                         Math.pow(2.71828, Math.pow(x, 2) / Math.pow(2 * config.falloff, 2))));
 
-                if(heightBounds <= 0) continue;
+                if((int)heightBounds <= 0) continue;
                 int height = random.nextInt((int) heightBounds);
 
                 BlockPos cpos = pos.add(x, 0, z);
