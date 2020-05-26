@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "surrealbiomes",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "name": "Surreal Biomes",
   "description": "Adds several new and unique biomes to explore.",
   "authors": [

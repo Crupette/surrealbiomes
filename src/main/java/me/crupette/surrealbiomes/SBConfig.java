@@ -229,7 +229,7 @@ public class SBConfig {
             public int rainbow_spike_height_max = RAINBOW_SPIKE_HEIGHT_MAX_DEFAULT;
 
             @Setting(ignore = true)
-            public static final float RAINBOW_SPIKE_FALLOFF_DEFAULT = 1.F;
+            public static final float RAINBOW_SPIKE_FALLOFF_DEFAULT = 6.F;
             @Constrain.Range(min = 1, max = 16)
             public float rainbow_spike_falloff = RAINBOW_SPIKE_FALLOFF_DEFAULT;
 

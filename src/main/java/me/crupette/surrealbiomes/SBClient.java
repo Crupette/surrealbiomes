@@ -139,7 +139,7 @@ public class SBClient implements ClientModInitializer {
                 })
                 .build());
 
-        crystalFeaturesCategory.addEntry(entryBuilder.startTextDescription(("desc.surrealbiomes.crystal_features.composition_list")).build());
+        crystalFeaturesCategory.addEntry(entryBuilder.startTextDescription(("To change which blocks generate in the crystal structure, change the values in the 'crystal_growth_blocks' field using the config file at config/surrealbiomes.json")).build());
 
         ConfigCategory rainbowCategory = builder.getOrCreateCategory(("category.surrealbiomes.rainbow"));
         rainbowCategory.addEntry(entryBuilder.startDoubleField(("option.surrealbiomes.rainbow.desert_chance"), SBConfig.config.rainbow.chance)
@@ -160,7 +160,7 @@ public class SBClient implements ClientModInitializer {
                 })
                 .build());
 
-        rainbowCategory.addEntry(entryBuilder.startTextDescription(("desc.surrealbiomes.rainbow.color_blocks")).build());
+        rainbowCategory.addEntry(entryBuilder.startTextDescription(("To change which blocks generate at the surface of rainbow deserts, change the values in the 'color_blocks' field using the config file at config/surrealbiomes.json")).build());
 
         ConfigCategory rainbowFeaturesCategory = builder.getOrCreateCategory(("category.surrealbiomes.rainbow_features"));
         rainbowFeaturesCategory.addEntry(entryBuilder.startIntSlider(
@@ -185,7 +185,7 @@ public class SBClient implements ClientModInitializer {
 
         rainbowFeaturesCategory.addEntry(entryBuilder.startIntSlider(
                 ("option.surrealbiomes.rainbow_features.rainbow_spike_height_max"),
-                SBConfig.config.rainbowFeatures.rainbow_spike_radius_min, 8, 128)
+                SBConfig.config.rainbowFeatures.rainbow_spike_height_max, 8, 128)
                 .setTooltip(("tooltip.surrealbiomes.rainbow_features.rainbow_spike_height_max"))
                 .requireRestart().setSaveConsumer(newValue -> {
                     SBConfig.config.rainbowFeatures.rainbow_spike_height_max = newValue;
@@ -203,7 +203,7 @@ public class SBClient implements ClientModInitializer {
                 })
                 .build());
 
-        rainbowFeaturesCategory.addEntry(entryBuilder.startTextDescription(("desc.surrealbiomes.rainbow_features.spike_blocks")).build());
+        rainbowFeaturesCategory.addEntry(entryBuilder.startTextDescription(("To change which blocks generate in the spike structure, change the values in the 'root_blocks' and 'composition_blocks' fields using the config file at config/surrealbiomes.json")).build());
 
         return builder.build();
     }
