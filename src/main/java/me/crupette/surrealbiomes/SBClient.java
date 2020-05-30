@@ -133,7 +133,7 @@ public class SBClient implements ClientModInitializer {
                 SBConfig.config.crystalFeatures.crystal_tilt)
                 .setDefaultValue(SBConfig.Config.CrystalStructureGroup.CRYSTAL_TILT_DEFAULT)
                 .setTooltip(new TranslatableText("tooltip.surrealbiomes.crystal_features.crystal_tilt"))
-                .setMin(0.0F).setMax(4.0F).requireRestart().setSaveConsumer(newValue -> {
+                .setMin(0.0F).setMax(2.0F).requireRestart().setSaveConsumer(newValue -> {
                     SBConfig.config.crystalFeatures.crystal_tilt = newValue;
                     SBConfig.saveConfig();
                 })

@@ -181,8 +181,8 @@ public class SBConfig {
             public int crystal_height_max = CRYSTAL_HEIGHT_MAX_DEFAULT;
 
             @Setting(ignore = true)
-            public static final float CRYSTAL_TILT_DEFAULT = 0.4f;
-            @Constrain.Range(min = 0.f, max = 4.f, step = 0.1f)
+            public static final float CRYSTAL_TILT_DEFAULT = 0.8f;
+            @Constrain.Range(min = 0.f, max = 2.f, step = 0.1f)
             public float crystal_tilt = CRYSTAL_TILT_DEFAULT;
 
             @Setting(ignore = true)
