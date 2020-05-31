@@ -83,8 +83,6 @@ curseforge {
 		addGameVersion 'Fabric'
 		relations {
 			requiredDependency 'fabric-api'
-			embeddedLibrary 'cloth'
-			embeddedLibrary 'fiber'
 		}
 
     	mainArtifact(file("${project.buildDir.absolutePath}/libs/${archivesBaseName}-${project.version}.jar")) {
@@ -96,11 +94,11 @@ curseforge {
 
 		afterEvaluate {
 			uploadTask.dependsOn("remapJar")
+			uploadTask.dependsOn("sourcesJar")
 		}
 	}
 	options {
 		forgeGradleIntegration = false
-		debug = true
 	}
 }
 
